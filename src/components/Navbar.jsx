@@ -109,38 +109,35 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-[#282B4C]/98 backdrop-blur-sm"
-          >
+          <div className="md:hidden bg-[#282B4C]/98">
             <div className="px-4 pt-2 pb-4 space-y-3">
               {navLinks.map((link) => (
-                <motion.button
+                <button
                   key={link.id}
-                  onClick={() => scrollToSection(link.id)}
-                  whileTap={{ transform: "translate3d(0,2px,0)" }}
+                  onClick={() => {
+                    // close menu immediately so it no longer overlays content,
+                    // then run scroll after a short delay to allow layout update / exit animation
+                    setIsOpen(false);
+                    setTimeout(() => scrollToSection(link.id), 150);
+                  }}
                   className="block w-full text-left px-4 py-3 text-white hover:text-[#25B8F2] hover:bg-white/5 rounded-lg transition-all duration-300 cursor-pointer"
                 >
                   {link.name}
-                </motion.button>
+                </button>
               ))}
-              <Link
-                to="/portfolio"
-                onClick={() => setIsOpen(false)}
-                className="cursor-pointer"
+
+              <button
+                onClick={() => {
+                  setIsOpen(false);
+                  // small delay so nav collapses before navigating
+                  setTimeout(() => navigate("/portfolio"), 150);
+                }}
+                className="w-full px-4 py-3 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-lg font-semibold cursor-pointer"
               >
-                <motion.button
-                  whileTap={{ transform: "translate3d(0,2px,0)" }}
-                  className="w-full px-4 py-3 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-lg font-semibold cursor-pointer"
-                >
-                  Portfolio
-                </motion.button>
-              </Link>
+                Portfolio
+              </button>
             </div>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </motion.nav>
