@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 // eslint-disable-next-line no-unused-vars
-import { motion } from "framer-motion";
 import {
   Mail,
   Phone,
@@ -13,6 +12,8 @@ import {
   Instagram,
 } from "lucide-react";
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -23,52 +24,16 @@ const ContactForm = () => {
     message: "",
   });
 
+  const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleMailTo = () => {
-    const subject = `Inquiry from ${formData.name || "Website Visitor"}`;
-    const body = `Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Company: ${formData.company}
-Service: ${formData.service}
-
-Message:
-${formData.message}`;
-    const mailto = `mailto:contact@logicnodes.com?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
-    // open mail client
-    window.location.href = mailto;
-
-    // show temporary submitted state
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        company: "",
-        service: "",
-        message: "",
-      });
-    }, 3000);
-  };
+  const [sending, setSending] = useState(false);
 
   const contactInfo = [
     {
       icon: MapPin,
       title: "Address",
       value:
-        "Logic Nodes Private Limited, Under Safari Sutra Holidays No 2, 1 Mohan Gokhale Rd, 1st & 20th Floor, Colony, 20th floor, Aarey Milk Colony, Mumbai, Maharashtra 400063.",
+        "Logic Nodes Private Limited, Under Safari Sutra Holidays No 2, 1 Mohan Gokhale Rd, Aarey Milk Colony, Mumbai, Maharashtra 400063.",
       link: "https://maps.google.com?q=Logic+Nodes+Private+Limited+Mumbai+400063",
       color: "#25B8F2",
     },
@@ -121,97 +86,124 @@ ${formData.message}`;
     "UI/UX Design",
   ];
 
+  const validate = (data) => {
+    const e = {};
+    if (!data.name.trim()) e.name = "Full name is required";
+    if (!data.email.trim()) e.email = "Email is required";
+    else if (!emailRegex.test(data.email)) e.email = "Enter a valid email";
+    if (!data.service) e.service = "Please select a service";
+    if (!data.message.trim()) e.message = "Message is required";
+    // optional: basic phone validation if provided
+    if (
+      data.phone &&
+      data.phone.trim() &&
+      !/^[\d+\-\s()]{6,}$/.test(data.phone)
+    )
+      e.phone = "Enter a valid phone number";
+    return e;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const next = { ...formData, [name]: value };
+    setFormData(next);
+
+    // validate field on change (lightweight)
+    setErrors((prev) => {
+      const nextErrors = { ...prev };
+      const fieldErrs = validate(next);
+      if (fieldErrs[name]) nextErrors[name] = fieldErrs[name];
+      else delete nextErrors[name];
+      return nextErrors;
+    });
+  };
+
+  const handleMailTo = () => {
+    // double-check validation before proceeding
+    const validation = validate(formData);
+    if (Object.keys(validation).length) {
+      setErrors(validation);
+      return;
+    }
+
+    if (sending) return;
+    setSending(true);
+
+    const subject = `Inquiry from ${formData.name || "Website Visitor"}`;
+    const body = `Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Company: ${formData.company}
+Service: ${formData.service}
+
+Message:
+${formData.message}`;
+
+    const mailto = `mailto:contact@logicnodes.com?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+
+    // open mail client
+    window.location.href = mailto;
+
+    // show temporary submitted state
+    setIsSubmitted(true);
+    setTimeout(() => {
+      setIsSubmitted(false);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        service: "",
+        message: "",
+      });
+      setErrors({});
+      setSending(false);
+    }, 3000);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const validation = validate(formData);
+    setErrors(validation);
+    if (Object.keys(validation).length === 0) {
+      handleMailTo();
+    }
+  };
+
+  const isValid = Object.keys(validate(formData)).length === 0;
+
   return (
     <section
       id="contact"
       className="relative py-24 overflow-hidden bg-linear-to-b from-[#282B4C] to-[#1a1d35]"
     >
-      {/* Background Animation */}
-      <div className="absolute inset-0 overflow-hidden opacity-30">
-        <motion.div
-          animate={{
-            transform: [
-              "translate3d(0,0,0)",
-              "translate3d(20px,-20px,0)",
-              "translate3d(0,0,0)",
-            ],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-0 right-0 w-96 h-96 bg-[#25B8F2]/20 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            transform: [
-              "translate3d(0,0,0)",
-              "translate3d(-20px,20px,0)",
-              "translate3d(0,0,0)",
-            ],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute bottom-0 left-0 w-96 h-96 bg-[#EF5BB7]/20 rounded-full blur-3xl"
-        />
-      </div>
+      {/* Background (keep lightweight) */}
+      <div className="absolute inset-0 overflow-hidden opacity-20 pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, transform: "translate3d(0,30px,0)" }}
-          whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <motion.span
-            initial={{ opacity: 0, transform: "translate3d(0,20px,0)" }}
-            whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="inline-block px-4 py-2 rounded-full bg-[#25B8F2]/10 border border-[#25B8F2]/30 text-[#25B8F2] text-sm font-semibold mb-4"
-          >
+        <div className="text-center mb-16 animate-fade-up">
+          <span className="inline-block px-4 py-2 rounded-full bg-[#25B8F2]/10 border border-[#25B8F2]/30 text-[#25B8F2] text-sm font-semibold mb-4">
             GET IN TOUCH
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, transform: "translate3d(0,20px,0)" }}
-            whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-6"
-          >
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="bg-linear-to-r from-[#25B8F2] via-[#A672C2] to-[#EF5BB7] bg-clip-text text-transparent">
               Let's Start a
             </span>
             <br />
             <span className="text-white">Conversation</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, transform: "translate3d(0,20px,0)" }}
-            whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-gray-300 text-lg max-w-2xl mx-auto"
-          >
+          </h2>
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
             Have a project in mind? We'd love to hear from you. Send us a
             message and we'll respond as soon as possible.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         <div className="grid lg:grid-cols-5 gap-12">
           {/* Contact Information */}
-          <motion.div
-            initial={{ opacity: 0, transform: "translate3d(-30px,0,0)" }}
-            whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="lg:col-span-2 space-y-8"
-          >
+          <div className="lg:col-span-2 space-y-8 animate-fade-up">
             <div>
               <h3 className="text-2xl font-bold text-white mb-6">
                 Contact Information
@@ -224,122 +216,79 @@ ${formData.message}`;
 
             {/* Contact Cards */}
             <div className="space-y-6">
-              {contactInfo.map((info, index) => (
-                <motion.a
-                  key={index}
-                  href={info.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{
-                    opacity: 0,
-                    transform: "translate3d(-20px,0,0)",
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    transform: "translate3d(0,0,0)",
-                  }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{
-                    transform: "translate3d(10px,0,0)",
-                    scale: 1.02,
-                  }}
-                  className="flex items-start gap-4 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 group cursor-pointer"
-                >
-                  <div
-                    className="p-3 rounded-lg"
-                    style={{
-                      background: `linear-gradient(135deg, ${info.color}20, ${info.color}10)`,
-                      boxShadow: `0 0 20px ${info.color}20`,
-                    }}
+              {contactInfo.map((info, index) => {
+                const Icon = info.icon;
+                return (
+                  <a
+                    key={index}
+                    href={info.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 group"
                   >
-                    <info.icon
-                      className="w-6 h-6"
-                      style={{ color: info.color }}
-                    />
-                  </div>
-                  <div>
-                    <p className="text-gray-400 text-sm mb-1">{info.title}</p>
-                    <p className="text-white font-semibold group-hover:text-[#25B8F2] transition-colors">
-                      {info.value}
-                    </p>
-                  </div>
-                </motion.a>
-              ))}
+                    <div
+                      className="p-3 rounded-lg"
+                      style={{
+                        background: `linear-gradient(135deg, ${info.color}20, ${info.color}10)`,
+                        boxShadow: `0 0 12px ${info.color}20`,
+                      }}
+                    >
+                      <Icon className="w-6 h-6" style={{ color: info.color }} />
+                    </div>
+                    <div>
+                      <p className="text-gray-400 text-sm mb-1">{info.title}</p>
+                      <p className="text-white font-semibold group-hover:text-[#25B8F2] transition-colors">
+                        {info.value}
+                      </p>
+                    </div>
+                  </a>
+                );
+              })}
             </div>
 
             {/* Social Links */}
             <div>
               <p className="text-gray-400 text-sm mb-4">Follow Us</p>
               <div className="flex gap-4">
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={index}
-                    href={social.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{
-                      transform: "translate3d(0,-5px,0)",
-                      scale: 1.1,
-                    }}
-                    whileTap={{
-                      transform: "translate3d(0,2px,0)",
-                      scale: 0.95,
-                    }}
-                    className="p-3 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 cursor-pointer"
-                    style={{
-                      boxShadow: `0 0 0 ${social.color}00`,
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.boxShadow = `0 0 20px ${social.color}40`;
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.boxShadow = `0 0 0 ${social.color}00`;
-                    }}
-                  >
-                    <social.icon
-                      className="w-5 h-5"
-                      style={{ color: social.color }}
-                    />
-                  </motion.a>
-                ))}
+                {socialLinks.map((social, index) => {
+                  const Icon = social.icon;
+                  return (
+                    <a
+                      key={index}
+                      href={social.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 transition-transform duration-200 transform hover:-translate-y-1"
+                      style={{ boxShadow: `0 0 0 ${social.color}00` }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.boxShadow = `0 0 16px ${social.color}40`;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.boxShadow = `0 0 0 ${social.color}00`;
+                      }}
+                    >
+                      <Icon
+                        className="w-5 h-5"
+                        style={{ color: social.color }}
+                      />
+                    </a>
+                  );
+                })}
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, transform: "translate3d(30px,0,0)" }}
-            whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="lg:col-span-3"
-          >
-            <form className="relative p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 shadow-2xl">
+          <div className="lg:col-span-3 animate-fade-up">
+            <form
+              onSubmit={handleSubmit}
+              className="relative p-8 rounded-2xl bg-white/5 border border-white/10 shadow-2xl"
+              noValidate
+            >
               {isSubmitted && (
-                <motion.div
-                  initial={{
-                    opacity: 0,
-                    transform: "translate3d(0,20px,0) scale(0.8)",
-                  }}
-                  animate={{
-                    opacity: 1,
-                    transform: "translate3d(0,0,0) scale(1)",
-                  }}
-                  exit={{
-                    opacity: 0,
-                    transform: "translate3d(0,20px,0) scale(0.8)",
-                  }}
-                  className="absolute inset-0 flex items-center justify-center bg-[#282B4C]/95 backdrop-blur-sm rounded-2xl z-10"
-                >
+                <div className="absolute inset-0 flex items-center justify-center bg-[#282B4C]/95 rounded-2xl z-10">
                   <div className="text-center">
-                    <motion.div
-                      initial={{ transform: "translate3d(0,0,0) scale(0)" }}
-                      animate={{ transform: "translate3d(0,0,0) scale(1)" }}
-                      transition={{ delay: 0.2, type: "spring" }}
-                    >
-                      <CheckCircle className="w-20 h-20 text-[#25B8F2] mx-auto mb-4" />
-                    </motion.div>
+                    <CheckCircle className="w-20 h-20 text-[#25B8F2] mx-auto mb-4" />
                     <h3 className="text-2xl font-bold text-white mb-2">
                       Thank You!
                     </h3>
@@ -347,7 +296,7 @@ ${formData.message}`;
                       We'll get back to you within 24 hours.
                     </p>
                   </div>
-                </motion.div>
+                </div>
               )}
 
               <div className="grid md:grid-cols-2 gap-6">
@@ -361,9 +310,14 @@ ${formData.message}`;
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-[#25B8F2] focus:ring-2 focus:ring-[#25B8F2]/20 transition-all duration-300"
+                    className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
+                      errors.name ? "border-red-400" : "border-white/10"
+                    } text-white placeholder-gray-500 focus:outline-none focus:border-[#25B8F2] focus:ring-2 focus:ring-[#25B8F2]/20 transition-all duration-300`}
                     placeholder="John Doe"
                   />
+                  {errors.name && (
+                    <p className="text-sm text-red-400 mt-2">{errors.name}</p>
+                  )}
                 </div>
 
                 <div>
@@ -376,9 +330,14 @@ ${formData.message}`;
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-[#25B8F2] focus:ring-2 focus:ring-[#25B8F2]/20 transition-all duration-300"
+                    className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
+                      errors.email ? "border-red-400" : "border-white/10"
+                    } text-white placeholder-gray-500 focus:outline-none focus:border-[#25B8F2] focus:ring-2 focus:ring-[#25B8F2]/20 transition-all duration-300`}
                     placeholder="john@example.com"
                   />
+                  {errors.email && (
+                    <p className="text-sm text-red-400 mt-2">{errors.email}</p>
+                  )}
                 </div>
 
                 <div>
@@ -390,9 +349,14 @@ ${formData.message}`;
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-[#25B8F2] focus:ring-2 focus:ring-[#25B8F2]/20 transition-all duration-300"
+                    className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
+                      errors.phone ? "border-red-400" : "border-white/10"
+                    } text-white placeholder-gray-500 focus:outline-none focus:border-[#25B8F2] focus:ring-2 focus:ring-[#25B8F2]/20 transition-all duration-300`}
                     placeholder="+1 (555) 123-4567"
                   />
+                  {errors.phone && (
+                    <p className="text-sm text-red-400 mt-2">{errors.phone}</p>
+                  )}
                 </div>
 
                 <div>
@@ -418,7 +382,9 @@ ${formData.message}`;
                     value={formData.service}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:border-[#25B8F2] focus:ring-2 focus:ring-[#25B8F2]/20 transition-all duration-300"
+                    className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
+                      errors.service ? "border-red-400" : "border-white/10"
+                    } text-white focus:outline-none focus:border-[#25B8F2] focus:ring-2 focus:ring-[#25B8F2]/20 transition-all duration-300`}
                   >
                     <option value="" className="bg-[#282B4C]">
                       Select a service
@@ -433,6 +399,11 @@ ${formData.message}`;
                       </option>
                     ))}
                   </select>
+                  {errors.service && (
+                    <p className="text-sm text-red-400 mt-2">
+                      {errors.service}
+                    </p>
+                  )}
                 </div>
 
                 <div className="md:col-span-2">
@@ -445,24 +416,33 @@ ${formData.message}`;
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-[#25B8F2] focus:ring-2 focus:ring-[#25B8F2]/20 transition-all duration-300 resize-none"
+                    className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
+                      errors.message ? "border-red-400" : "border-white/10"
+                    } text-white placeholder-gray-500 focus:outline-none focus:border-[#25B8F2] focus:ring-2 focus:ring-[#25B8F2]/20 transition-all duration-300 resize-none`}
                     placeholder="Tell us about your project..."
                   />
+                  {errors.message && (
+                    <p className="text-sm text-red-400 mt-2">
+                      {errors.message}
+                    </p>
+                  )}
                 </div>
               </div>
 
-              <motion.button
-                type="button"
-                onClick={handleMailTo}
-                whileHover={{ transform: "translate3d(0,-3px,0)" }}
-                whileTap={{ transform: "translate3d(0,2px,0)" }}
-                className="mt-6 w-full px-8 py-4 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] rounded-lg font-bold text-white text-lg shadow-lg hover:shadow-[#25B8F2]/50 transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer"
+              <button
+                type="submit"
+                disabled={!isValid || sending}
+                className={`mt-6 w-full px-8 py-4 rounded-lg font-bold text-white text-lg shadow-lg transition-all duration-200 flex items-center justify-center gap-2 ${
+                  isValid && !sending
+                    ? "bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] hover:shadow-[#25B8F2]/50 cursor-pointer"
+                    : "bg-gray-600 cursor-not-allowed opacity-60"
+                }`}
               >
-                Send Message
-                <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </motion.button>
+                {sending ? "Opening mail client..." : "Send Message"}
+                <Send className="w-5 h-5" />
+              </button>
             </form>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
