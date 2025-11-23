@@ -126,7 +126,7 @@ const Services = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ transform: "translate3d(0,-10px,0)" }}
-              className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 overflow-hidden"
+              className="group relative bg-white/5  border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 overflow-hidden"
             >
               {/* Animated Gradient Background on Hover */}
               <motion.div
@@ -138,7 +138,7 @@ const Services = () => {
 
               {/* Icon Glow Effect */}
               <div
-                className="absolute top-8 left-8 w-20 h-20 rounded-full opacity-0 group-hover:opacity-30 blur-2xl transition-opacity duration-500"
+                className="absolute top-8 left-8 w-20 h-20 rounded-full opacity-0 group-hover:opacity-30  transition-opacity duration-500"
                 style={{ backgroundColor: service.color }}
               />
 

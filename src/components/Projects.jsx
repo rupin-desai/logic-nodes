@@ -91,7 +91,7 @@ const Projects = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ transform: "translate3d(0,-10px,0)" }}
-              className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-300"
+              className="group relative bg-white/5  border border-white/10 rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-300"
             >
               {/* Project Image/Gradient */}
               <div
@@ -105,7 +105,7 @@ const Projects = () => {
               >
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300" />
                 <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-xs font-semibold rounded-full">
+                  <span className="px-3 py-1 bg-white/20  text-white text-xs font-semibold rounded-full">
                     {project.category}
                   </span>
                 </div>
@@ -134,7 +134,7 @@ const Projects = () => {
               {/* Hover Glow Effect */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                 <div
-                  className="absolute inset-0 blur-xl"
+                  className="absolute inset-0 "
                   style={{
                     backgroundImage: project.image,
                     backgroundSize: "cover",

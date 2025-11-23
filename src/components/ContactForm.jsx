@@ -269,7 +269,7 @@ ${formData.message}`;
             viewport={{ once: true }}
             className="lg:col-span-3"
           >
-            <form className="relative p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 shadow-2xl">
+            <form className="relative p-8 rounded-2xl bg-white/5  border border-white/10 shadow-2xl">
               {isSubmitted && (
                 <motion.div
                   initial={{
@@ -284,7 +284,7 @@ ${formData.message}`;
                     opacity: 0,
                     transform: "translate3d(0,20px,0)",
                   }}
-                  className="absolute inset-0 flex items-center justify-center bg-[#282B4C]/95 backdrop-blur-sm rounded-2xl z-10"
+                  className="absolute inset-0 flex items-center justify-center bg-[#282B4C]/95  rounded-2xl z-10"
                 >
                   <div className="text-center">
                     <motion.div

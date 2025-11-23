@@ -40,7 +40,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="flex justify-center mb-6"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5  border border-white/10 rounded-full">
             <Sparkles className="w-4 h-4 text-[#25B8F2]" />
             <span className="text-sm text-white/80">
               Innovative IT Solutions
@@ -88,7 +88,7 @@ const Hero = () => {
               const element = document.getElementById("services");
               if (element) element.scrollIntoView({ behavior: "smooth" });
             }}
-            className="px-8 py-4 bg-white/5 backdrop-blur-sm border-2 border-white/20 text-white rounded-full font-semibold text-lg hover:bg-white/10 transition-all duration-300 cursor-pointer"
+            className="px-8 py-4 bg-white/5  border-2 border-white/20 text-white rounded-full font-semibold text-lg hover:bg-white/10 transition-all duration-300 cursor-pointer"
           >
             Explore Services
           </motion.button>
