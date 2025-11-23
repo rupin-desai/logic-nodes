@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus, HelpCircle } from "lucide-react";
 
@@ -93,15 +94,18 @@ const FAQ = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, transform: "translate3d(0,20px,0)" }}
+          whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, transform: "translate3d(0,0,0) scale(0.8)" }}
+            whileInView={{
+              opacity: 1,
+              transform: "translate3d(0,0,0) scale(1)",
+            }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-4 py-2 bg-[#25B8F2]/10 border border-[#25B8F2]/20 rounded-full mb-4"
@@ -114,7 +118,7 @@ const FAQ = () => {
 
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="text-white">Frequently Asked</span>{" "}
-            <span className="bg-gradient-to-r from-[#25B8F2] via-[#A672C2] to-[#EF5BB7] bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-[#25B8F2] via-[#A672C2] to-[#EF5BB7] bg-clip-text text-transparent">
               Questions
             </span>
           </h2>
@@ -129,8 +133,8 @@ const FAQ = () => {
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, transform: "translate3d(0,20px,0)" }}
+              whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
               className="group"
@@ -150,7 +154,7 @@ const FAQ = () => {
                   <motion.div
                     animate={{ rotate: openIndex === index ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
-                    className="flex-shrink-0"
+                    className="shrink-0"
                   >
                     {openIndex === index ? (
                       <div
@@ -208,8 +212,8 @@ const FAQ = () => {
 
         {/* CTA at Bottom */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, transform: "translate3d(0,20px,0)" }}
+          whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
           className="mt-12 text-center"
@@ -224,7 +228,7 @@ const FAQ = () => {
               const element = document.getElementById("contact");
               if (element) element.scrollIntoView({ behavior: "smooth" });
             }}
-            className="px-8 py-3 bg-gradient-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-full font-semibold hover:shadow-lg hover:shadow-[#25B8F2]/50 transition-all duration-300"
+            className="px-8 py-3 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-full font-semibold hover:shadow-lg hover:shadow-[#25B8F2]/50 transition-all duration-300"
           >
             Contact Our Team
           </motion.button>

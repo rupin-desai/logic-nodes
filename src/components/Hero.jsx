@@ -1,4 +1,5 @@
 import React from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 
@@ -13,13 +14,12 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#282B4C] via-[#1a1d35] to-[#0f1020]"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-linear-to-br from-[#282B4C] via-[#1a1d35] to-[#0f1020]"
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           animate={{
-            scale: [1, 1.2, 1],
             rotate: [0, 90, 0],
           }}
           transition={{
@@ -31,7 +31,6 @@ const Hero = () => {
         />
         <motion.div
           animate={{
-            scale: [1, 1.3, 1],
             rotate: [0, -90, 0],
           }}
           transition={{
@@ -43,7 +42,6 @@ const Hero = () => {
         />
         <motion.div
           animate={{
-            scale: [1, 1.4, 1],
             rotate: [0, 180, 0],
           }}
           transition={{
@@ -58,8 +56,8 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, transform: "translate3d(0,30px,0)" }}
+          animate={{ opacity: 1, transform: "translate3d(0,0,0)" }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="flex justify-center mb-6"
         >
@@ -70,10 +68,9 @@ const Hero = () => {
             </span>
           </div>
         </motion.div>
-
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, transform: "translate3d(0,30px,0)" }}
+          animate={{ opacity: 1, transform: "translate3d(0,0,0)" }}
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6"
         >
@@ -83,10 +80,9 @@ const Hero = () => {
             With Logic Nodes
           </span>
         </motion.h1>
-
         <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, transform: "translate3d(0,30px,0)" }}
+          animate={{ opacity: 1, transform: "translate3d(0,0,0)" }}
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
         >
@@ -94,37 +90,31 @@ const Hero = () => {
           streamline operations, and accelerate your digital transformation
           journey.
         </motion.p>
-
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, transform: "translate3d(0,30px,0)" }}
+          animate={{ opacity: 1, transform: "translate3d(0,0,0)" }}
           transition={{ duration: 0.8, delay: 0.8 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
             onClick={scrollToContact}
-            className="group px-8 py-4 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl hover:shadow-[#25B8F2]/50 transition-all duration-300 flex items-center gap-2"
+            className="group px-8 py-4 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl hover:shadow-[#25B8F2]/50 transition-all duration-300 flex items-center gap-2 cursor-pointer"
           >
             Get Started
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </motion.button>
 
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
             onClick={() => {
               const element = document.getElementById("services");
               if (element) element.scrollIntoView({ behavior: "smooth" });
             }}
-            className="px-8 py-4 bg-white/5 backdrop-blur-sm border-2 border-white/20 text-white rounded-full font-semibold text-lg hover:bg-white/10 transition-all duration-300"
+            className="px-8 py-4 bg-white/5 backdrop-blur-sm border-2 border-white/20 text-white rounded-full font-semibold text-lg hover:bg-white/10 transition-all duration-300 cursor-pointer"
           >
             Explore Services
           </motion.button>
         </motion.div>
-
-\
+        \
       </div>
 
       {/* Scroll Indicator */}
@@ -135,7 +125,13 @@ const Hero = () => {
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
       >
         <motion.div
-          animate={{ y: [0, 10, 0] }}
+          animate={{
+            transform: [
+              "translate3d(0,0px,0)",
+              "translate3d(0,10px,0)",
+              "translate3d(0,0px,0)",
+            ],
+          }}
           transition={{ duration: 2, repeat: Infinity }}
           className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2"
         >

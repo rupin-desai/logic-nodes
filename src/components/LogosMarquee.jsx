@@ -1,4 +1,5 @@
 import React from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 
 const LogosMarquee = () => {
@@ -21,8 +22,8 @@ const LogosMarquee = () => {
     <section className="py-16 bg-[#1a1d35] border-y border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, transform: "translate3d(0,20px,0)" }}
+          whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="text-center mb-12"
@@ -40,10 +41,13 @@ const LogosMarquee = () => {
           {/* Scrolling Logos */}
           <motion.div
             animate={{
-              x: [0, -50 * logos.length],
+              transform: [
+                "translate3d(0,0,0)",
+                `translate3d(-${50 * logos.length}px,0,0)`,
+              ],
             }}
             transition={{
-              x: {
+              transform: {
                 repeat: Infinity,
                 repeatType: "loop",
                 duration: 20,
@@ -58,7 +62,7 @@ const LogosMarquee = () => {
                 className="flex items-center justify-center min-w-[150px]"
               >
                 <motion.div
-                  whileHover={{ scale: 1.1 }}
+                  whileHover={{ transform: "translate3d(0,-3px,0)" }}
                   className="text-2xl font-bold text-white/40 hover:text-white/80 transition-colors duration-300"
                   style={{
                     textShadow: `0 0 20px ${logo.color}40`,

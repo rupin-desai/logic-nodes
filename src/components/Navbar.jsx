@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
@@ -47,8 +48,8 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
+      initial={{ transform: "translate3d(0,-100px,0)" }}
+      animate={{ transform: "translate3d(0,0,0)" }}
       transition={{ duration: 0.5 }}
       className={`fixed w-full z-50 transition-all duration-300 ${
         scrolled
@@ -59,13 +60,13 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="text-2xl font-bold bg-gradient-to-r from-[#25B8F2] via-[#A672C2] to-[#EF5BB7] bg-clip-text text-transparent"
-            >
-              Logic Nodes
-            </motion.div>
+          <Link to="/" className="flex items-center space-x-2 cursor-pointer">
+            <motion.img
+              src="/logo_full_white.png"
+              alt="Logic Nodes"
+              whileHover={{ transform: "translate3d(0,-2px,0)" }}
+              className="h-20 cursor-pointer"
+            />
           </Link>
 
           {/* Desktop Menu */}
@@ -74,18 +75,18 @@ const Navbar = () => {
               <motion.button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="text-white hover:text-[#25B8F2] transition-colors duration-300 font-medium"
+                whileHover={{ transform: "translate3d(0,-3px,0)" }}
+                whileTap={{ transform: "translate3d(0,2px,0)" }}
+                className="text-white hover:text-[#25B8F2] transition-colors duration-300 font-medium cursor-pointer"
               >
                 {link.name}
               </motion.button>
             ))}
             <Link to="/portfolio">
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-6 py-2 bg-gradient-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-full font-semibold hover:shadow-lg hover:shadow-[#25B8F2]/50 transition-all duration-300"
+                whileHover={{ transform: "translate3d(0,-3px,0)" }}
+                whileTap={{ transform: "translate3d(0,2px,0)" }}
+                className="px-6 py-2 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-full font-semibold hover:shadow-lg hover:shadow-[#25B8F2]/50 transition-all duration-300 cursor-pointer"
               >
                 Portfolio
               </motion.button>
@@ -95,9 +96,9 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <div className="md:hidden">
             <motion.button
-              whileTap={{ scale: 0.9 }}
+              whileTap={{ transform: "translate3d(0,2px,0)" }}
               onClick={() => setIsOpen(!isOpen)}
-              className="text-white p-2"
+              className="text-white p-2 cursor-pointer"
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </motion.button>
@@ -120,16 +121,20 @@ const Navbar = () => {
                 <motion.button
                   key={link.id}
                   onClick={() => scrollToSection(link.id)}
-                  whileTap={{ scale: 0.95 }}
-                  className="block w-full text-left px-4 py-3 text-white hover:text-[#25B8F2] hover:bg-white/5 rounded-lg transition-all duration-300"
+                  whileTap={{ transform: "translate3d(0,2px,0)" }}
+                  className="block w-full text-left px-4 py-3 text-white hover:text-[#25B8F2] hover:bg-white/5 rounded-lg transition-all duration-300 cursor-pointer"
                 >
                   {link.name}
                 </motion.button>
               ))}
-              <Link to="/portfolio" onClick={() => setIsOpen(false)}>
+              <Link
+                to="/portfolio"
+                onClick={() => setIsOpen(false)}
+                className="cursor-pointer"
+              >
                 <motion.button
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full px-4 py-3 bg-gradient-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-lg font-semibold"
+                  whileTap={{ transform: "translate3d(0,2px,0)" }}
+                  className="w-full px-4 py-3 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-lg font-semibold cursor-pointer"
                 >
                   Portfolio
                 </motion.button>

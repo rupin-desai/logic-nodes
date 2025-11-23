@@ -1,4 +1,5 @@
 import React from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -151,18 +152,18 @@ const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, transform: "translate3d(0,20px,0)" }}
+              whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
               <Link to="/" onClick={scrollToTop}>
-                <motion.h2
-                  whileHover={{ scale: 1.05 }}
-                  className="text-3xl font-bold bg-linear-to-r from-[#25B8F2] via-[#A672C2] to-[#EF5BB7] bg-clip-text text-transparent mb-4 cursor-pointer inline-block"
-                >
-                  Logic Nodes
-                </motion.h2>
+                <motion.img
+                  src="/logo_full_white.png"
+                  alt="Logic Nodes"
+                  whileHover={{ transform: "translate3d(0,0,0) scale(1.05)" }}
+                  className="h-24 md:h-32 mb-4 cursor-pointer inline-block"
+                />
               </Link>
               <p className="text-gray-300 mb-6 leading-relaxed">
                 Empowering businesses with innovative IT solutions that drive
@@ -178,8 +179,10 @@ const Footer = () => {
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1, y: -3 }}
-                    whileTap={{ scale: 0.95 }}
+                    whileHover={{
+                      transform: "translate3d(0,-3px,0) scale(1.1)",
+                    }}
+                    whileTap={{ transform: "translate3d(0,0,0) scale(0.95)" }}
                     className="p-3 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 group"
                     aria-label={social.name}
                   >
@@ -192,8 +195,8 @@ const Footer = () => {
 
           {/* Quick Links */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, transform: "translate3d(0,20px,0)" }}
+            whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
@@ -203,7 +206,7 @@ const Footer = () => {
                 <li key={index}>
                   <motion.button
                     onClick={() => scrollToSection(link.id)}
-                    whileHover={{ x: 5 }}
+                    whileHover={{ transform: "translate3d(5px,0,0)" }}
                     className="text-gray-400 hover:text-[#25B8F2] transition-colors duration-300 text-left"
                   >
                     {link.name}
@@ -215,8 +218,8 @@ const Footer = () => {
 
           {/* Services */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, transform: "translate3d(0,20px,0)" }}
+            whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
@@ -226,7 +229,7 @@ const Footer = () => {
                 <li key={index}>
                   <motion.button
                     onClick={() => scrollToSection("services")}
-                    whileHover={{ x: 5 }}
+                    whileHover={{ transform: "translate3d(5px,0,0)" }}
                     className="text-gray-400 hover:text-[#EF5BB7] transition-colors duration-300 text-left"
                   >
                     {service}
@@ -238,8 +241,8 @@ const Footer = () => {
 
           {/* Resources */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, transform: "translate3d(0,20px,0)" }}
+            whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
           >
@@ -250,7 +253,7 @@ const Footer = () => {
                   {resource.path ? (
                     <Link to={resource.path}>
                       <motion.button
-                        whileHover={{ x: 5 }}
+                        whileHover={{ transform: "translate3d(5px,0,0)" }}
                         className="text-gray-400 hover:text-[#A672C2] transition-colors duration-300 text-left"
                       >
                         {resource.name}
@@ -259,7 +262,7 @@ const Footer = () => {
                   ) : (
                     <motion.button
                       onClick={() => scrollToSection(resource.id)}
-                      whileHover={{ x: 5 }}
+                      whileHover={{ transform: "translate3d(5px,0,0)" }}
                       className="text-gray-400 hover:text-[#A672C2] transition-colors duration-300 text-left"
                     >
                       {resource.name}
@@ -273,8 +276,8 @@ const Footer = () => {
 
         {/* Contact Info Section */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, transform: "translate3d(0,20px,0)" }}
+          whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
           className="py-8 border-b border-white/10"
@@ -286,7 +289,7 @@ const Footer = () => {
                 href={info.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.02, y: -2 }}
+                whileHover={{ transform: "translate3d(0,-2px,0) scale(1.02)" }}
                 className="flex items-center gap-4 p-4 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 group"
               >
                 <div
@@ -326,21 +329,21 @@ const Footer = () => {
 
           <div className="flex items-center gap-6 text-sm text-gray-400">
             <motion.button
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ transform: "translate3d(0,0,0) scale(1.05)" }}
               className="hover:text-[#25B8F2] transition-colors"
             >
               Privacy Policy
             </motion.button>
             <span>•</span>
             <motion.button
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ transform: "translate3d(0,0,0) scale(1.05)" }}
               className="hover:text-[#25B8F2] transition-colors"
             >
               Terms of Service
             </motion.button>
             <span>•</span>
             <motion.button
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ transform: "translate3d(0,0,0) scale(1.05)" }}
               className="hover:text-[#25B8F2] transition-colors"
             >
               Cookie Policy
@@ -352,10 +355,10 @@ const Footer = () => {
       {/* Scroll to Top Button */}
       <motion.button
         onClick={scrollToTop}
-        initial={{ opacity: 0, scale: 0 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        whileHover={{ scale: 1.1, y: -5 }}
-        whileTap={{ scale: 0.9 }}
+        initial={{ opacity: 0, transform: "translate3d(0,0,0) scale(0)" }}
+        whileInView={{ opacity: 1, transform: "translate3d(0,0,0) scale(1)" }}
+        whileHover={{ transform: "translate3d(0,-5px,0) scale(1.1)" }}
+        whileTap={{ transform: "translate3d(0,0,0) scale(0.9)" }}
         transition={{ duration: 0.3 }}
         viewport={{ once: true }}
         className="fixed bottom-8 right-8 z-50 p-4 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-full shadow-lg hover:shadow-xl hover:shadow-[#25B8F2]/50 transition-all duration-300"

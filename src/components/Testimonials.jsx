@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
 
@@ -7,58 +8,40 @@ const Testimonials = () => {
 
   const testimonials = [
     {
-      name: "Sarah Johnson",
-      role: "CTO, TechCorp Industries",
-      company: "TechCorp Industries",
-      image: "SJ",
+      name: "Ravi Kapoor",
+      role: "Founder of FinEdge Solutions",
+      company: "FinEdge Solutions",
+      image: "RK",
       rating: 5,
-      text: "Logic Nodes transformed our entire IT infrastructure. Their cloud migration service was seamless, and we've seen a 40% reduction in operational costs. The team's expertise and professionalism are unmatched.",
+      text: "Partnering with LogicNodes completely transformed our digital presence. The website is sleek, scalable, and built to perform seamlessly. We've seen a huge boost in client inquiries and overall trust in our brand.",
       color: "#25B8F2",
     },
     {
-      name: "Michael Chen",
-      role: "CEO, DataFlow Systems",
-      company: "DataFlow Systems",
-      image: "MC",
+      name: "Anjali Nair",
+      role: "Marketing Head at EduVerse",
+      company: "EduVerse",
+      image: "AN",
       rating: 5,
-      text: "Working with Logic Nodes was a game-changer for our business. They delivered a custom analytics platform that exceeded our expectations. Their attention to detail and commitment to quality is exceptional.",
-      color: "#EF5BB7",
-    },
-    {
-      name: "Emily Rodriguez",
-      role: "VP of Engineering, SecureBank",
-      company: "SecureBank",
-      image: "ER",
-      rating: 5,
-      text: "The cybersecurity solutions provided by Logic Nodes have given us peace of mind. Their thorough security audits identified vulnerabilities we didn't know existed. Highly recommended!",
-      color: "#A672C2",
-    },
-    {
-      name: "David Thompson",
-      role: "Founder, StartupHub",
-      company: "StartupHub",
-      image: "DT",
-      rating: 5,
-      text: "Logic Nodes helped us scale from a startup to a thriving business. Their DevOps expertise streamlined our deployment process, cutting our release time by 60%. Outstanding work!",
+      text: "LogicNodes delivered exactly what we needed—a modern, intuitive platform that's easy to manage and scale. Their consultative approach and attention to detail made the entire process smooth and highly effective.",
       color: "#25B8F2",
     },
     {
-      name: "Lisa Park",
-      role: "Director of IT, Global Logistics",
-      company: "Global Logistics",
-      image: "LP",
+      name: "Vikram Shah",
+      role: "CEO of HealthSync",
+      company: "HealthSync",
+      image: "VS",
       rating: 5,
-      text: "Their IoT solutions revolutionized our fleet management system. Real-time tracking and predictive maintenance have saved us millions. The Logic Nodes team is truly innovative.",
-      color: "#EF5BB7",
+      text: "From UI/UX design to full-stack development, LogicNodes handled everything seamlessly. Their technical expertise and commitment to quality truly set them apart. Highly recommended for growth-focused businesses.",
+      color: "#25B8F2",
     },
     {
-      name: "James Wilson",
-      role: "CMO, RetailPlus",
-      company: "RetailPlus",
-      image: "JW",
+      name: "Priya Singh",
+      role: "Operations Manager at GreenGrid Tech",
+      company: "GreenGrid Tech",
+      image: "PS",
       rating: 5,
-      text: "The mobile app developed by Logic Nodes has been a huge success with our customers. 4.9-star rating and growing! Their UI/UX design is world-class.",
-      color: "#A672C2",
+      text: "LogicNodes delivered exactly what we needed—a modern, intuitive platform that's easy to manage and scale. Their consultative approach and attention to detail made the entire process smooth and highly effective.",
+      color: "#25B8F2",
     },
   ];
 
@@ -86,15 +69,15 @@ const Testimonials = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, transform: "translate3d(0,30px,0)" }}
+          whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, transform: "translate3d(0,20px,0)" }}
+            whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold text-white mb-4"
@@ -105,8 +88,8 @@ const Testimonials = () => {
             </span>
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, transform: "translate3d(0,20px,0)" }}
+            whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
             className="text-gray-400 text-lg max-w-2xl mx-auto"
@@ -121,16 +104,16 @@ const Testimonials = () => {
           {/* Navigation Buttons */}
           <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between pointer-events-none z-20">
             <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
+              whileHover={{ transform: "translate3d(0,-3px,0)" }}
+              whileTap={{ transform: "translate3d(0,2px,0)" }}
               onClick={prevTestimonial}
               className="pointer-events-auto -ml-4 md:-ml-16 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors duration-300"
             >
               <ChevronLeft size={24} />
             </motion.button>
             <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
+              whileHover={{ transform: "translate3d(0,-3px,0)" }}
+              whileTap={{ transform: "translate3d(0,2px,0)" }}
               onClick={nextTestimonial}
               className="pointer-events-auto -mr-4 md:-mr-16 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors duration-300"
             >
@@ -142,9 +125,9 @@ const Testimonials = () => {
           <AnimatePresence mode="wait">
             <motion.div
               key={currentIndex}
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -100 }}
+              initial={{ opacity: 0, transform: "translate3d(100px,0,0)" }}
+              animate={{ opacity: 1, transform: "translate3d(0,0,0)" }}
+              exit={{ opacity: 0, transform: "translate3d(-100px,0,0)" }}
               transition={{ duration: 0.5 }}
               className="relative"
             >
@@ -164,8 +147,14 @@ const Testimonials = () => {
                   {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
                     <motion.div
                       key={i}
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
+                      initial={{
+                        opacity: 0,
+                        transform: "translate3d(0,10px,0) scale(0)",
+                      }}
+                      animate={{
+                        opacity: 1,
+                        transform: "translate3d(0,0,0) scale(1)",
+                      }}
                       transition={{ delay: i * 0.1 }}
                     >
                       <Star
@@ -220,7 +209,7 @@ const Testimonials = () => {
                 className="group"
               >
                 <motion.div
-                  whileHover={{ scale: 1.2 }}
+                  whileHover={{ transform: "translate3d(0,-3px,0)" }}
                   className={`w-2 h-2 rounded-full transition-all duration-300 ${
                     index === currentIndex
                       ? "w-8 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7]"
@@ -232,37 +221,6 @@ const Testimonials = () => {
           </div>
         </div>
 
-        {/* Stats Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20"
-        >
-          {[
-            { value: "500+", label: "Projects Completed" },
-            { value: "98%", label: "Client Satisfaction" },
-            { value: "50+", label: "Team Members" },
-            { value: "15+", label: "Years Experience" },
-          ].map((stat, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
-              viewport={{ once: true }}
-              className="text-center"
-            >
-              <div className="text-3xl md:text-4xl font-bold bg-linear-to-r from-[#25B8F2] via-[#A672C2] to-[#EF5BB7] bg-clip-text text-transparent mb-2">
-                {stat.value}
-              </div>
-              <div className="text-gray-400 text-sm md:text-base">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );

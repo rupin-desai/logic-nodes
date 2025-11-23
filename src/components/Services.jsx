@@ -1,4 +1,5 @@
 import React from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { Cloud, Code, Shield, Database, Smartphone, Cog } from "lucide-react";
 
@@ -6,9 +7,9 @@ const Services = () => {
   const services = [
     {
       icon: Cloud,
-      title: "Cloud Solutions",
+      title: "Website & App Development",
       description:
-        "Migrate, optimize, and manage your cloud infrastructure with our expert guidance. We specialize in AWS, Azure, and Google Cloud platforms.",
+        "We create fast, responsive websites and user-friendly mobile apps that deliver seamless experiences and drive real business results.",
       color: "#25B8F2",
       features: [
         "Cloud Migration",
@@ -18,25 +19,25 @@ const Services = () => {
     },
     {
       icon: Code,
-      title: "Custom Development",
+      title: "IT Consulting",
       description:
-        "Build scalable, robust applications tailored to your business needs. From web to mobile, we deliver cutting-edge solutions.",
+        "We guide businesses with smart IT strategies that solve complex challenges. Our approach ensures clarity, efficiency, and long-term value.",
       color: "#EF5BB7",
       features: ["Web Applications", "API Development", "Microservices"],
     },
     {
       icon: Shield,
-      title: "Cybersecurity",
+      title: "Software Development",
       description:
-        "Protect your digital assets with comprehensive security solutions. We ensure your systems are secure from emerging threats.",
+        "We build custom software tailored to your goals. Every solution is designed to be efficient, scalable, and future-ready.",
       color: "#A672C2",
       features: ["Security Audits", "Penetration Testing", "Compliance"],
     },
     {
       icon: Database,
-      title: "Data Analytics",
+      title: "ERP & CRM Solutions",
       description:
-        "Transform raw data into actionable insights. Our analytics solutions help you make data-driven decisions for business growth.",
+        "We design and implement systems that streamline operations and improve decision-making. Every detail is crafted for efficiency and growth.",
       color: "#25B8F2",
       features: [
         "Business Intelligence",
@@ -46,17 +47,17 @@ const Services = () => {
     },
     {
       icon: Smartphone,
-      title: "Mobile Solutions",
+      title: "Cloud Solutions",
       description:
-        "Create exceptional mobile experiences for iOS and Android. We build native and cross-platform apps that users love.",
+        "We deliver secure, scalable cloud infrastructures that power business growth. From migration to optimization, our solutions ensure agility and resilience.",
       color: "#EF5BB7",
       features: ["Native Apps", "Cross-Platform", "UI/UX Design"],
     },
     {
       icon: Cog,
-      title: "DevOps & Automation",
+      title: "UI/UX Design",
       description:
-        "Streamline your development lifecycle with modern DevOps practices. Automate deployments and improve collaboration.",
+        "We craft interfaces that are modern, intuitive, and user-focused. Every design balances aesthetics with functionality.",
       color: "#A672C2",
       features: ["CI/CD Pipelines", "Infrastructure Automation", "Monitoring"],
     },
@@ -71,9 +72,13 @@ const Services = () => {
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           animate={{
-            scale: [1, 1.3, 1],
             rotate: [0, 90, 0],
             opacity: [0.05, 0.15, 0.05],
+            transform: [
+              "translate3d(0,0,0)",
+              "translate3d(10px,0,0)",
+              "translate3d(0,0,0)",
+            ],
           }}
           transition={{
             duration: 15,
@@ -84,9 +89,13 @@ const Services = () => {
         />
         <motion.div
           animate={{
-            scale: [1, 1.4, 1],
             rotate: [0, -90, 0],
             opacity: [0.05, 0.15, 0.05],
+            transform: [
+              "translate3d(0,0,0)",
+              "translate3d(-10px,0,0)",
+              "translate3d(0,0,0)",
+            ],
           }}
           transition={{
             duration: 18,
@@ -100,15 +109,15 @@ const Services = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, transform: "translate3d(0,30px,0)" }}
+          whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
           <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, transform: "translate3d(0,20px,0)" }}
+            whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             className="inline-block text-[#25B8F2] font-semibold text-sm uppercase tracking-wider mb-4"
@@ -116,8 +125,8 @@ const Services = () => {
             Our Services
           </motion.span>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, transform: "translate3d(0,20px,0)" }}
+            whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
             className="text-4xl lg:text-5xl font-bold text-white mb-6"
@@ -128,8 +137,8 @@ const Services = () => {
             </span>
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, transform: "translate3d(0,20px,0)" }}
+            whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
             className="text-xl text-gray-300 max-w-3xl mx-auto"
@@ -144,11 +153,11 @@ const Services = () => {
           {services.map((service, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, transform: "translate3d(0,30px,0)" }}
+              whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              whileHover={{ y: -10, scale: 1.02 }}
+              whileHover={{ transform: "translate3d(0,-10px,0)" }}
               className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 overflow-hidden"
             >
               {/* Animated Gradient Background on Hover */}
@@ -168,7 +177,7 @@ const Services = () => {
               <div className="relative z-10">
                 {/* Icon Container */}
                 <motion.div
-                  whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+                  whileHover={{ rotate: [0, -10, 10, -10, 0] }}
                   transition={{ duration: 0.5 }}
                   className="inline-flex items-center justify-center w-16 h-16 rounded-xl mb-6"
                   style={{
@@ -197,8 +206,14 @@ const Services = () => {
                   {service.features.map((feature, idx) => (
                     <motion.li
                       key={idx}
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
+                      initial={{
+                        opacity: 0,
+                        transform: "translate3d(-10px,0,0)",
+                      }}
+                      whileInView={{
+                        opacity: 1,
+                        transform: "translate3d(0,0,0)",
+                      }}
                       transition={{ duration: 0.3, delay: 0.5 + idx * 0.1 }}
                       viewport={{ once: true }}
                       className="flex items-center text-sm text-gray-400 group-hover:text-gray-300 transition-colors"
@@ -214,7 +229,7 @@ const Services = () => {
 
                 {/* Learn More Link */}
                 <motion.button
-                  whileHover={{ x: 5 }}
+                  whileHover={{ transform: "translate3d(5px,0,0)" }}
                   className="mt-6 inline-flex items-center text-sm font-semibold group-hover:text-[#25B8F2] transition-colors duration-300"
                   style={{ color: service.color }}
                 >
@@ -245,15 +260,15 @@ const Services = () => {
 
         {/* CTA Section */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, transform: "translate3d(0,30px,0)" }}
+          whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
           transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ transform: "translate3d(0,-3px,0)" }}
+            whileTap={{ transform: "translate3d(0,2px,0)" }}
             onClick={() => {
               const element = document.getElementById("contact");
               if (element) element.scrollIntoView({ behavior: "smooth" });
