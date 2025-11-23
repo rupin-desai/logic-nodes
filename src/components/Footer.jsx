@@ -47,12 +47,12 @@ const Footer = () => {
   ];
 
   const services = [
+    "Website & App Development",
+    "IT Consulting",
+    "Software Development",
+    "ERP & CRM Solutions",
     "Cloud Solutions",
-    "Custom Development",
-    "Cybersecurity",
-    "Data Analytics",
-    "Mobile Solutions",
-    "DevOps & Automation",
+    "UI/UX Design",
   ];
 
   const resources = [
@@ -60,27 +60,6 @@ const Footer = () => {
     { name: "Testimonials", id: "testimonials" },
     { name: "FAQ", id: "faq" },
     { name: "Contact", id: "contact" },
-  ];
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      text: "contact@logicnodes.com",
-      link: "mailto:contact@logicnodes.com",
-      color: "#25B8F2",
-    },
-    {
-      icon: Phone,
-      text: "+1 (555) 123-4567",
-      link: "tel:+15551234567",
-      color: "#EF5BB7",
-    },
-    {
-      icon: MapPin,
-      text: "123 Tech Street, Silicon Valley, CA 94025",
-      link: "https://maps.google.com",
-      color: "#A672C2",
-    },
   ];
 
   const socialLinks = [
@@ -274,50 +253,13 @@ const Footer = () => {
           </motion.div>
         </div>
 
-        {/* Contact Info Section */}
-        <motion.div
-          initial={{ opacity: 0, transform: "translate3d(0,20px,0)" }}
-          whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="py-8 border-b border-white/10"
-        >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {contactInfo.map((info, index) => (
-              <motion.a
-                key={index}
-                href={info.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ transform: "translate3d(0,-2px,0) scale(1.02)" }}
-                className="flex items-center gap-4 p-4 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 group"
-              >
-                <div
-                  className="p-3 rounded-lg"
-                  style={{
-                    background: `linear-gradient(135deg, ${info.color}20, ${info.color}10)`,
-                  }}
-                >
-                  <info.icon
-                    className="w-5 h-5"
-                    style={{ color: info.color }}
-                  />
-                </div>
-                <span className="text-gray-300 group-hover:text-white transition-colors text-sm">
-                  {info.text}
-                </span>
-              </motion.a>
-            ))}
-          </div>
-        </motion.div>
-
         {/* Bottom Bar */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.5 }}
           viewport={{ once: true }}
-          className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
+          className="pt-8 flex flex-col md:flex-row justify-center items-center gap-4"
         >
           <div className="flex items-center gap-6 text-sm text-gray-400">
             <p className="flex items-center gap-2">
@@ -325,29 +267,6 @@ const Footer = () => {
               <Heart className="w-4 h-4 text-[#EF5BB7] fill-current" /> by Logic
               Nodes Team
             </p>
-          </div>
-
-          <div className="flex items-center gap-6 text-sm text-gray-400">
-            <motion.button
-              whileHover={{ transform: "translate3d(0,0,0) scale(1.05)" }}
-              className="hover:text-[#25B8F2] transition-colors"
-            >
-              Privacy Policy
-            </motion.button>
-            <span>•</span>
-            <motion.button
-              whileHover={{ transform: "translate3d(0,0,0) scale(1.05)" }}
-              className="hover:text-[#25B8F2] transition-colors"
-            >
-              Terms of Service
-            </motion.button>
-            <span>•</span>
-            <motion.button
-              whileHover={{ transform: "translate3d(0,0,0) scale(1.05)" }}
-              className="hover:text-[#25B8F2] transition-colors"
-            >
-              Cookie Policy
-            </motion.button>
           </div>
         </motion.div>
       </div>
