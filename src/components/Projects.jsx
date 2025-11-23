@@ -35,8 +35,30 @@ const Projects = () => {
     >
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="bg-blob bg-blob-blue absolute top-1/3 -left-20 w-96 h-96 rounded-full animate-blob" />
-        <div className="bg-blob bg-blob-pink absolute bottom-1/3 -right-20 w-96 h-96 rounded-full animate-blob" />
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.05, 0.1, 0.05],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute top-1/3 -left-20 w-96 h-96 bg-[#25B8F2]/20 rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.05, 0.1, 0.05],
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute bottom-1/3 -right-20 w-96 h-96 bg-[#EF5BB7]/20 rounded-full blur-3xl"
+        />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -91,7 +113,7 @@ const Projects = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ transform: "translate3d(0,-10px,0)" }}
-              className="group relative bg-white/5  border border-white/10 rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-300"
+              className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-300"
             >
               {/* Project Image/Gradient */}
               <div
@@ -105,14 +127,18 @@ const Projects = () => {
               >
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300" />
                 <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 bg-white/20  text-white text-xs font-semibold rounded-full">
+                  <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-xs font-semibold rounded-full">
                     {project.category}
                   </span>
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="bg-white/10 p-4 rounded-full transition-transform duration-200 transform scale-100">
+                  <motion.div
+                    initial={{ transform: "translate3d(0,0,0) scale(0)" }}
+                    whileHover={{ transform: "translate3d(0,0,0) scale(1)" }}
+                    className="bg-white/10 backdrop-blur-sm p-4 rounded-full"
+                  >
                     <ExternalLink className="w-8 h-8 text-white" />
-                  </div>
+                  </motion.div>
                 </div>
 
                 <div className="absolute bottom-4 right-4 text-white/30 font-bold text-4xl">
@@ -134,7 +160,7 @@ const Projects = () => {
               {/* Hover Glow Effect */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                 <div
-                  className="absolute inset-0 "
+                  className="absolute inset-0 blur-xl"
                   style={{
                     backgroundImage: project.image,
                     backgroundSize: "cover",
@@ -157,8 +183,8 @@ const Projects = () => {
           className="text-center"
         >
           <motion.button
-            whileHover={{ transform: "translate3d(0,-5px,0)" }}
-            whileTap={{ transform: "translate3d(0,2px,0)" }}
+            whileHover={{ transform: "translate3d(0,-5px,0) scale(1.05)" }}
+            whileTap={{ transform: "translate3d(0,2px,0) scale(0.95)" }}
             onClick={() => navigate("/portfolio")}
             className="group inline-flex cursor-pointer items-center gap-2 px-8 py-4 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl hover:shadow-[#25B8F2]/50 transition-all duration-300"
           >

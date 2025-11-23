@@ -76,24 +76,44 @@ const LogosMarquee = () => {
         </motion.div>
 
         <div className="relative overflow-hidden">
+          {/* Gradient Overlays */}
           <div className="absolute left-0 top-0 bottom-0 w-32 bg-linear-to-r from-[#1a1d35] to-transparent z-10" />
           <div className="absolute right-0 top-0 bottom-0 w-32 bg-linear-to-l from-[#1a1d35] to-transparent z-10" />
 
           {/* Scrolling Logos */}
-          <div className="flex gap-16 items-center">
+          <motion.div
+            animate={{
+              transform: [
+                "translate3d(0,0,0)",
+                `translate3d(-${logos.length * 200}px,0,0)`,
+              ],
+            }}
+            transition={{
+              transform: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 30,
+                ease: "linear",
+              },
+            }}
+            className="flex gap-16 items-center"
+          >
             {duplicatedLogos.map((logo, index) => (
               <div
                 key={index}
-                className="flex items-center justify-center min-w-[150px] h-16"
+                className="flex items-center justify-center min-w-[150px] h-16 grayscale hover:grayscale-0 transition-all duration-300"
               >
-                <img
+                <motion.img
                   src={logo.image}
                   alt={logo.name}
-                  className="h-12 w-auto object-contain opacity-60"
+                  whileHover={{
+                    transform: "translate3d(0,-5px,0) scale(1.1)",
+                  }}
+                  className="h-12 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300"
                 />
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

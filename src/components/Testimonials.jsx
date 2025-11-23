@@ -62,8 +62,8 @@ const Testimonials = () => {
     >
       {/* Background Effects */}
       <div className="absolute inset-0 opacity-20">
-        <div className="bg-blob bg-blob-blue absolute top-1/4 left-1/4 w-96 h-96 rounded-full animate-blob" />
-        <div className="bg-blob bg-blob-pink absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full animate-blob" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#25B8F2] rounded-full filter blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#EF5BB7] rounded-full filter blur-[120px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -107,7 +107,7 @@ const Testimonials = () => {
               whileHover={{ transform: "translate3d(0,-3px,0)" }}
               whileTap={{ transform: "translate3d(0,2px,0)" }}
               onClick={prevTestimonial}
-              className="pointer-events-auto -ml-4 md:-ml-16 w-12 h-12 rounded-full bg-white/10  border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors duration-300"
+              className="pointer-events-auto -ml-4 md:-ml-16 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors duration-300"
             >
               <ChevronLeft size={24} />
             </motion.button>
@@ -115,7 +115,7 @@ const Testimonials = () => {
               whileHover={{ transform: "translate3d(0,-3px,0)" }}
               whileTap={{ transform: "translate3d(0,2px,0)" }}
               onClick={nextTestimonial}
-              className="pointer-events-auto -mr-4 md:-mr-16 w-12 h-12 rounded-full bg-white/10  border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors duration-300"
+              className="pointer-events-auto -mr-4 md:-mr-16 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors duration-300"
             >
               <ChevronRight size={24} />
             </motion.button>
@@ -132,7 +132,7 @@ const Testimonials = () => {
               className="relative"
             >
               <div
-                className="bg-linear-to-br from-white/5 to-white/2  border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl"
+                className="bg-linear-to-br from-white/5 to-white/2 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl"
                 style={{
                   boxShadow: `0 0 60px ${testimonials[currentIndex].color}20`,
                 }}
@@ -145,20 +145,24 @@ const Testimonials = () => {
                 {/* Rating Stars */}
                 <div className="flex gap-1 mb-6">
                   {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                    <div
+                    <motion.div
                       key={i}
-                      className="opacity-0 animate-fade-up"
-                      style={{
-                        animationDelay: `${i * 0.06}s`,
-                        animationFillMode: "forwards",
+                      initial={{
+                        opacity: 0,
+                        transform: "translate3d(0,10px,0) scale(0)",
                       }}
+                      animate={{
+                        opacity: 1,
+                        transform: "translate3d(0,0,0) scale(1)",
+                      }}
+                      transition={{ delay: i * 0.1 }}
                     >
                       <Star
                         size={24}
                         fill={testimonials[currentIndex].color}
                         stroke={testimonials[currentIndex].color}
                       />
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
 
@@ -216,6 +220,7 @@ const Testimonials = () => {
             ))}
           </div>
         </div>
+
       </div>
     </section>
   );

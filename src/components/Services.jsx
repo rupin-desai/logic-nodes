@@ -70,8 +70,40 @@ const Services = () => {
     >
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="bg-blob bg-blob-blue absolute top-0 right-1/4 w-96 h-96 rounded-full animate-blob" />
-        <div className="bg-blob bg-blob-pink absolute bottom-0 left-1/4 w-96 h-96 rounded-full animate-blob" />
+        <motion.div
+          animate={{
+            rotate: [0, 90, 0],
+            opacity: [0.05, 0.15, 0.05],
+            transform: [
+              "translate3d(0,0,0)",
+              "translate3d(10px,0,0)",
+              "translate3d(0,0,0)",
+            ],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute top-0 right-1/4 w-96 h-96 bg-[#25B8F2]/20 rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{
+            rotate: [0, -90, 0],
+            opacity: [0.05, 0.15, 0.05],
+            transform: [
+              "translate3d(0,0,0)",
+              "translate3d(-10px,0,0)",
+              "translate3d(0,0,0)",
+            ],
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#EF5BB7]/20 rounded-full blur-3xl"
+        />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -126,7 +158,7 @@ const Services = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ transform: "translate3d(0,-10px,0)" }}
-              className="group relative bg-white/5  border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 overflow-hidden"
+              className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 overflow-hidden"
             >
               {/* Animated Gradient Background on Hover */}
               <motion.div
@@ -138,7 +170,7 @@ const Services = () => {
 
               {/* Icon Glow Effect */}
               <div
-                className="absolute top-8 left-8 w-20 h-20 rounded-full opacity-0 group-hover:opacity-30  transition-opacity duration-500"
+                className="absolute top-8 left-8 w-20 h-20 rounded-full opacity-0 group-hover:opacity-30 blur-2xl transition-opacity duration-500"
                 style={{ backgroundColor: service.color }}
               />
 

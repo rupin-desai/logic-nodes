@@ -128,13 +128,35 @@ ${formData.message}`;
     >
       {/* Background Animation */}
       <div className="absolute inset-0 overflow-hidden opacity-30">
-        <div
-          className="bg-blob bg-blob-blue absolute top-0 right-0 w-96 h-96 rounded-full animate-blob"
-          style={{ animationDuration: "10s" }}
+        <motion.div
+          animate={{
+            transform: [
+              "translate3d(0,0,0)",
+              "translate3d(20px,-20px,0)",
+              "translate3d(0,0,0)",
+            ],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute top-0 right-0 w-96 h-96 bg-[#25B8F2]/20 rounded-full blur-3xl"
         />
-        <div
-          className="bg-blob bg-blob-pink absolute bottom-0 left-0 w-96 h-96 rounded-full animate-blob"
-          style={{ animationDuration: "8s", animationDirection: "reverse" }}
+        <motion.div
+          animate={{
+            transform: [
+              "translate3d(0,0,0)",
+              "translate3d(-20px,20px,0)",
+              "translate3d(0,0,0)",
+            ],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute bottom-0 left-0 w-96 h-96 bg-[#EF5BB7]/20 rounded-full blur-3xl"
         />
       </div>
 
@@ -203,12 +225,26 @@ ${formData.message}`;
             {/* Contact Cards */}
             <div className="space-y-6">
               {contactInfo.map((info, index) => (
-                <a
+                <motion.a
                   key={index}
                   href={info.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 duration-300 group cursor-pointer hover:-translate-y-1 transform transition-transform"
+                  initial={{
+                    opacity: 0,
+                    transform: "translate3d(-20px,0,0)",
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    transform: "translate3d(0,0,0)",
+                  }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{
+                    transform: "translate3d(10px,0,0)",
+                    scale: 1.02,
+                  }}
+                  className="flex items-start gap-4 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 group cursor-pointer"
                 >
                   <div
                     className="p-3 rounded-lg"
@@ -228,7 +264,7 @@ ${formData.message}`;
                       {info.value}
                     </p>
                   </div>
-                </a>
+                </motion.a>
               ))}
             </div>
 
@@ -237,13 +273,23 @@ ${formData.message}`;
               <p className="text-gray-400 text-sm mb-4">Follow Us</p>
               <div className="flex gap-4">
                 {socialLinks.map((social, index) => (
-                  <a
+                  <motion.a
                     key={index}
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 transition-transform duration-200 transform hover:-translate-y-1"
-                    style={{ boxShadow: `0 0 0 ${social.color}00` }}
+                    whileHover={{
+                      transform: "translate3d(0,-5px,0)",
+                      scale: 1.1,
+                    }}
+                    whileTap={{
+                      transform: "translate3d(0,2px,0)",
+                      scale: 0.95,
+                    }}
+                    className="p-3 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 cursor-pointer"
+                    style={{
+                      boxShadow: `0 0 0 ${social.color}00`,
+                    }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.boxShadow = `0 0 20px ${social.color}40`;
                     }}
@@ -255,7 +301,7 @@ ${formData.message}`;
                       className="w-5 h-5"
                       style={{ color: social.color }}
                     />
-                  </a>
+                  </motion.a>
                 ))}
               </div>
             </div>
@@ -269,27 +315,27 @@ ${formData.message}`;
             viewport={{ once: true }}
             className="lg:col-span-3"
           >
-            <form className="relative p-8 rounded-2xl bg-white/5  border border-white/10 shadow-2xl">
+            <form className="relative p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 shadow-2xl">
               {isSubmitted && (
                 <motion.div
                   initial={{
                     opacity: 0,
-                    transform: "translate3d(0,20px,0) ",
+                    transform: "translate3d(0,20px,0) scale(0.8)",
                   }}
                   animate={{
                     opacity: 1,
-                    transform: "translate3d(0,0,0) ",
+                    transform: "translate3d(0,0,0) scale(1)",
                   }}
                   exit={{
                     opacity: 0,
-                    transform: "translate3d(0,20px,0)",
+                    transform: "translate3d(0,20px,0) scale(0.8)",
                   }}
-                  className="absolute inset-0 flex items-center justify-center bg-[#282B4C]/95  rounded-2xl z-10"
+                  className="absolute inset-0 flex items-center justify-center bg-[#282B4C]/95 backdrop-blur-sm rounded-2xl z-10"
                 >
                   <div className="text-center">
                     <motion.div
-                      initial={{ transform: "translate3d(0,0,0) " }}
-                      animate={{ transform: "translate3d(0,0,0) " }}
+                      initial={{ transform: "translate3d(0,0,0) scale(0)" }}
+                      animate={{ transform: "translate3d(0,0,0) scale(1)" }}
                       transition={{ delay: 0.2, type: "spring" }}
                     >
                       <CheckCircle className="w-20 h-20 text-[#25B8F2] mx-auto mb-4" />

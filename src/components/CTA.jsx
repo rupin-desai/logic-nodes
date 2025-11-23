@@ -21,13 +21,29 @@ const CTA = () => {
     <section className="relative py-24 overflow-hidden bg-linear-to-br from-[#282B4C] via-[#1a1d35] to-[#282B4C]">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div
-          className="bg-blob bg-blob-blue absolute top-1/4 left-1/4 w-64 h-64 rounded-full animate-blob"
-          style={{ animationDuration: "20s" }}
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            rotate: [0, 180, 360],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#25B8F2]/10 rounded-full blur-3xl"
         />
-        <div
-          className="bg-blob bg-blob-pink absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full animate-blob"
-          style={{ animationDuration: "15s", animationDirection: "reverse" }}
+        <motion.div
+          animate={{
+            scale: [1.2, 1, 1.2],
+            rotate: [360, 180, 0],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-[#EF5BB7]/10 rounded-full blur-3xl"
         />
       </div>
 
@@ -43,11 +59,11 @@ const CTA = () => {
           <motion.div
             initial={{
               opacity: 0,
-              transform: "translate3d(0,20px,0) ",
+              transform: "translate3d(0,20px,0) scale(0.8)",
             }}
             whileInView={{
               opacity: 1,
-              transform: "translate3d(0,0,0)",
+              transform: "translate3d(0,0,0) scale(1)",
             }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
@@ -95,9 +111,13 @@ const CTA = () => {
             className="flex flex-wrap justify-center gap-8 mb-12"
           >
             {features.map((feature, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="flex items-center gap-3 transform transition-transform duration-200 hover:-translate-y-1"
+                whileHover={{
+                  transform: "translate3d(0,-5px,0) scale(1.05)",
+                }}
+                whileTap={{ transform: "translate3d(0,2px,0) scale(0.95)" }}
+                className="flex items-center gap-3"
               >
                 <div
                   className="p-3 rounded-full"
@@ -112,7 +132,7 @@ const CTA = () => {
                   />
                 </div>
                 <span className="text-white font-semibold">{feature.text}</span>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
 
@@ -124,9 +144,13 @@ const CTA = () => {
             viewport={{ once: true }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <button
+            <motion.button
               onClick={scrollToContact}
-              className="group relative px-8 py-4 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] rounded-full font-bold text-white text-lg shadow-lg hover:shadow-[#25B8F2]/50 transition-all duration-300 overflow-hidden transform hover:-translate-y-1"
+              whileHover={{
+                transform: "translate3d(0,-3px,0) scale(1.05)",
+              }}
+              whileTap={{ transform: "translate3d(0,2px,0) scale(0.95)" }}
+              className="group relative px-8 py-4 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] rounded-full font-bold text-white text-lg shadow-lg hover:shadow-[#25B8F2]/50 transition-all duration-300 overflow-hidden"
             >
               <span className="relative z-10 flex items-center gap-2">
                 Get Started Now
@@ -138,14 +162,14 @@ const CTA = () => {
                 whileHover={{ transform: "translate3d(0,0,0)" }}
                 transition={{ duration: 0.3 }}
               />
-            </button>
+            </motion.button>
 
             <motion.button
               onClick={scrollToContact}
               whileHover={{
-                transform: "translate3d(0,-3px,0) ",
+                transform: "translate3d(0,-3px,0) scale(1.05)",
               }}
-              whileTap={{ transform: "translate3d(0,2px,0) " }}
+              whileTap={{ transform: "translate3d(0,2px,0) scale(0.95)" }}
               className="px-8 py-4 border-2 border-[#25B8F2] rounded-full font-bold text-white text-lg hover:bg-[#25B8F2]/10 transition-all duration-300"
             >
               Schedule a Call

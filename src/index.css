@@ -4,36 +4,3 @@
 html { 
   font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
-
-/* efficient "blob" backgrounds (no filter/blur) */
-.bg-blob {
-  border-radius: 50%;
-  position: absolute;
-  pointer-events: none;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  opacity: 0.18;
-  mix-blend-mode: screen;
-}
-
-/* color variants */
-.bg-blob-blue {
-  background: radial-gradient(circle at 30% 30%, rgba(37,184,242,0.18) 0%, rgba(37,184,242,0.06) 35%, transparent 60%);
-}
-.bg-blob-pink {
-  background: radial-gradient(circle at 70% 70%, rgba(239,91,183,0.18) 0%, rgba(239,91,183,0.06) 35%, transparent 60%);
-}
-.bg-blob-purple {
-  background: radial-gradient(circle at 50% 50%, rgba(166,114,194,0.16) 0%, rgba(166,114,194,0.05) 35%, transparent 60%);
-}
-
-/* subtle movement animation (GPU-friendly: transform only) */
-@keyframes blobMove {
-  0% { transform: translate3d(0,0,0); opacity: 0.16; }
-  50% { transform: translate3d(18px,-12px,0) ; opacity: 0.20; }
-  100% { transform: translate3d(0,0,0); opacity: 0.16; }
-}
-.animate-blob { animation: blobMove 14s ease-in-out infinite; }
-
-/* keep existing rotate/slow utilities if used */
-.animate-rotate-slow { animation: rotateSlow 24s linear infinite; }

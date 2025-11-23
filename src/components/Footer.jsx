@@ -117,8 +117,18 @@ const Footer = () => {
     <footer className="relative bg-linear-to-b from-[#1a1d35] to-[#0f1020] pt-20 pb-8 overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden opacity-20" ref={ref}>
-        <div className="bg-blob bg-blob-blue absolute top-0 left-1/4 w-96 h-96 rounded-full animate-blob" />
-        <div className="bg-blob bg-blob-pink absolute bottom-0 right-1/4 w-96 h-96 rounded-full animate-blob" />
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate={controls}
+          className="absolute top-0 left-1/4 w-96 h-96 bg-[#25B8F2]/20 rounded-full blur-3xl"
+        />
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate={controls}
+          className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#EF5BB7]/20 rounded-full blur-3xl"
+        />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -135,7 +145,7 @@ const Footer = () => {
               <motion.img
                 src="/logo_full_white.png"
                 alt="Logic Nodes"
-                whileHover={{ transform: "translate3d(0,0,0) " }}
+                whileHover={{ transform: "translate3d(0,0,0) scale(1.05)" }}
                 className="h-24 md:h-32 mb-4 cursor-pointer inline-block"
               />
             </Link>
@@ -148,16 +158,19 @@ const Footer = () => {
             {/* Social Links */}
             <div className="flex gap-3">
               {socialLinks.map((social, index) => (
-                <a
+                <motion.a
                   key={index}
                   href={social.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 transition-transform duration-200 transform hover:-translate-y-1"
+                  variants={fadeUp}
+                  whileHover={{ transform: "translate3d(0,-3px,0) scale(1.1)" }}
+                  whileTap={{ transform: "translate3d(0,0,0) scale(0.95)" }}
+                  className="p-3 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 group"
                   aria-label={social.name}
                 >
                   <social.icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
-                </a>
+                </motion.a>
               ))}
             </div>
           </motion.div>
@@ -246,13 +259,28 @@ const Footer = () => {
       </div>
 
       {/* Scroll to Top Button */}
-      <button
+      <motion.button
         onClick={scrollToTop}
-        className="fixed bottom-8 right-8 z-50 p-4 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-full shadow-lg hover:shadow-xl hover:shadow-[#25B8F2]/50 transition-transform duration-200 transform hover:-translate-y-1"
+        variants={{
+          hidden: {
+            opacity: 0,
+            transform: "translate3d(0,0,0) scale(0)",
+          },
+          visible: {
+            opacity: 1,
+            transform: "translate3d(0,0,0) scale(1)",
+          },
+        }}
+        initial="hidden"
+        animate={controls}
+        whileHover={{ transform: "translate3d(0,-5px,0) scale(1.1)" }}
+        whileTap={{ transform: "translate3d(0,0,0) scale(0.9)" }}
+        transition={{ duration: 0.3 }}
+        className="fixed bottom-8 right-8 z-50 p-4 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-full shadow-lg hover:shadow-xl hover:shadow-[#25B8F2]/50 transition-all duration-300"
         aria-label="Scroll to top"
       >
         <ArrowUp className="w-6 h-6" />
-      </button>
+      </motion.button>
     </footer>
   );
 };

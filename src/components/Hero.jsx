@@ -18,17 +18,38 @@ const Hero = () => {
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div
-          className="bg-blob bg-blob-blue absolute top-20 left-10 w-72 h-72 rounded-full animate-blob"
-          style={{ animationDuration: "20s" }}
+        <motion.div
+          animate={{
+            rotate: [0, 90, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute top-20 left-10 w-72 h-72 bg-[#25B8F2]/10 rounded-full blur-3xl"
         />
-        <div
-          className="bg-blob bg-blob-pink absolute bottom-20 right-10 w-96 h-96 rounded-full animate-blob"
-          style={{ animationDuration: "15s", animationDirection: "reverse" }}
+        <motion.div
+          animate={{
+            rotate: [0, -90, 0],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute bottom-20 right-10 w-96 h-96 bg-[#EF5BB7]/10 rounded-full blur-3xl"
         />
-        <div
-          className="bg-blob bg-blob-purple absolute top-1/2 left-1/2 w-96 h-96 rounded-full transform -translate-x-1/2 -translate-y-1/2 animate-blob"
-          style={{ animationDuration: "25s" }}
+        <motion.div
+          animate={{
+            rotate: [0, 180, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#A672C2]/10 rounded-full blur-3xl"
         />
       </div>
 
@@ -40,7 +61,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="flex justify-center mb-6"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5  border border-white/10 rounded-full">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full">
             <Sparkles className="w-4 h-4 text-[#25B8F2]" />
             <span className="text-sm text-white/80">
               Innovative IT Solutions
@@ -88,7 +109,7 @@ const Hero = () => {
               const element = document.getElementById("services");
               if (element) element.scrollIntoView({ behavior: "smooth" });
             }}
-            className="px-8 py-4 bg-white/5  border-2 border-white/20 text-white rounded-full font-semibold text-lg hover:bg-white/10 transition-all duration-300 cursor-pointer"
+            className="px-8 py-4 bg-white/5 backdrop-blur-sm border-2 border-white/20 text-white rounded-full font-semibold text-lg hover:bg-white/10 transition-all duration-300 cursor-pointer"
           >
             Explore Services
           </motion.button>
