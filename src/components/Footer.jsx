@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 // eslint-disable-next-line no-unused-vars
-import { motion } from "framer-motion";
+import { motion, useAnimation, useInView } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Mail,
@@ -18,25 +18,28 @@ import {
 const Footer = () => {
   const navigate = useNavigate();
 
-  const scrollToSection = (sectionId) => {
-    if (window.location.pathname !== "/") {
-      navigate("/");
-      setTimeout(() => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }, 100);
-    } else {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+  const ref = useRef(null);
+  const controls = useAnimation();
+  const isInView = useInView(ref, { once: true, margin: "-100px 0px" });
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
     }
+  }, [isInView, controls]);
+
+  const containerVariants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.08 } },
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const fadeUp = {
+    hidden: { opacity: 0, transform: "translate3d(0,20px,0)" },
+    visible: {
+      opacity: 1,
+      transform: "translate3d(0,0,0)",
+      transition: { duration: 0.6 },
+    },
   };
 
   const quickLinks = [
@@ -64,121 +67,116 @@ const Footer = () => {
 
   const socialLinks = [
     {
+      icon: Instagram,
+      link: "https://www.instagram.com/logicnodestech/",
+      name: "Instagram",
+      color: "#EF5BB7",
+    },
+    {
+      icon: Github,
+      link: "https://github.com/Logicnodes-Tech",
+      name: "GitHub",
+      color: "#A672C2",
+    },
+    {
       icon: Linkedin,
-      link: "https://linkedin.com/company/logicnodes",
+      link: "https://www.linkedin.com/company/logicnodes-tech/",
       name: "LinkedIn",
       color: "#25B8F2",
     },
     {
       icon: Twitter,
-      link: "https://twitter.com/logicnodes",
-      name: "Twitter",
-      color: "#EF5BB7",
-    },
-    {
-      icon: Github,
-      link: "https://github.com/logicnodes",
-      name: "GitHub",
-      color: "#A672C2",
-    },
-    {
-      icon: Facebook,
-      link: "https://facebook.com/logicnodes",
-      name: "Facebook",
+      link: "https://x.com/logicnodestech",
+      name: "X",
       color: "#25B8F2",
     },
-    {
-      icon: Instagram,
-      link: "https://instagram.com/logicnodes",
-      name: "Instagram",
-      color: "#EF5BB7",
-    },
   ];
+
+  const scrollToSection = (sectionId) => {
+    if (window.location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <footer className="relative bg-linear-to-b from-[#1a1d35] to-[#0f1020] pt-20 pb-8 overflow-hidden">
       {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden opacity-20">
+      <div className="absolute inset-0 overflow-hidden opacity-20" ref={ref}>
         <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 90, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
+          variants={fadeUp}
+          initial="hidden"
+          animate={controls}
           className="absolute top-0 left-1/4 w-96 h-96 bg-[#25B8F2]/20 rounded-full blur-3xl"
         />
         <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            rotate: [0, -90, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear",
-          }}
+          variants={fadeUp}
+          initial="hidden"
+          animate={controls}
           className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#EF5BB7]/20 rounded-full blur-3xl"
         />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-12 border-b border-white/10">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={controls}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-12 border-b border-white/10"
+        >
           {/* Company Info */}
-          <div className="lg:col-span-2">
-            <motion.div
-              initial={{ opacity: 0, transform: "translate3d(0,20px,0)" }}
-              whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <Link to="/" onClick={scrollToTop}>
-                <motion.img
-                  src="/logo_full_white.png"
-                  alt="Logic Nodes"
-                  whileHover={{ transform: "translate3d(0,0,0) scale(1.05)" }}
-                  className="h-24 md:h-32 mb-4 cursor-pointer inline-block"
-                />
-              </Link>
-              <p className="text-gray-300 mb-6 leading-relaxed">
-                Empowering businesses with innovative IT solutions that drive
-                growth and digital transformation. We're your trusted partner in
-                navigating the digital landscape.
-              </p>
+          <motion.div variants={fadeUp} className="lg:col-span-2">
+            <Link to="/" onClick={scrollToTop}>
+              <motion.img
+                src="/logo_full_white.png"
+                alt="Logic Nodes"
+                whileHover={{ transform: "translate3d(0,0,0) scale(1.05)" }}
+                className="h-24 md:h-32 mb-4 cursor-pointer inline-block"
+              />
+            </Link>
+            <p className="text-gray-300 mb-6 leading-relaxed">
+              Empowering businesses with innovative IT solutions that drive
+              growth and digital transformation. We're your trusted partner in
+              navigating the digital landscape.
+            </p>
 
-              {/* Social Links */}
-              <div className="flex gap-3">
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={index}
-                    href={social.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{
-                      transform: "translate3d(0,-3px,0) scale(1.1)",
-                    }}
-                    whileTap={{ transform: "translate3d(0,0,0) scale(0.95)" }}
-                    className="p-3 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 group"
-                    aria-label={social.name}
-                  >
-                    <social.icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
-                  </motion.a>
-                ))}
-              </div>
-            </motion.div>
-          </div>
+            {/* Social Links */}
+            <div className="flex gap-3">
+              {socialLinks.map((social, index) => (
+                <motion.a
+                  key={index}
+                  href={social.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variants={fadeUp}
+                  whileHover={{ transform: "translate3d(0,-3px,0) scale(1.1)" }}
+                  whileTap={{ transform: "translate3d(0,0,0) scale(0.95)" }}
+                  className="p-3 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 group"
+                  aria-label={social.name}
+                >
+                  <social.icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
 
           {/* Quick Links */}
-          <motion.div
-            initial={{ opacity: 0, transform: "translate3d(0,20px,0)" }}
-            whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
+          <motion.div variants={fadeUp}>
             <h3 className="text-white font-bold text-lg mb-6">Quick Links</h3>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
@@ -196,12 +194,7 @@ const Footer = () => {
           </motion.div>
 
           {/* Services */}
-          <motion.div
-            initial={{ opacity: 0, transform: "translate3d(0,20px,0)" }}
-            whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
+          <motion.div variants={fadeUp}>
             <h3 className="text-white font-bold text-lg mb-6">Services</h3>
             <ul className="space-y-3">
               {services.map((service, index) => (
@@ -219,12 +212,7 @@ const Footer = () => {
           </motion.div>
 
           {/* Resources */}
-          <motion.div
-            initial={{ opacity: 0, transform: "translate3d(0,20px,0)" }}
-            whileInView={{ opacity: 1, transform: "translate3d(0,0,0)" }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-          >
+          <motion.div variants={fadeUp}>
             <h3 className="text-white font-bold text-lg mb-6">Resources</h3>
             <ul className="space-y-3">
               {resources.map((resource, index) => (
@@ -251,14 +239,13 @@ const Footer = () => {
               ))}
             </ul>
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* Bottom Bar */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          viewport={{ once: true }}
+          variants={fadeUp}
+          initial="hidden"
+          animate={controls}
           className="pt-8 flex flex-col md:flex-row justify-center items-center gap-4"
         >
           <div className="flex items-center gap-6 text-sm text-gray-400">
@@ -274,12 +261,21 @@ const Footer = () => {
       {/* Scroll to Top Button */}
       <motion.button
         onClick={scrollToTop}
-        initial={{ opacity: 0, transform: "translate3d(0,0,0) scale(0)" }}
-        whileInView={{ opacity: 1, transform: "translate3d(0,0,0) scale(1)" }}
+        variants={{
+          hidden: {
+            opacity: 0,
+            transform: "translate3d(0,0,0) scale(0)",
+          },
+          visible: {
+            opacity: 1,
+            transform: "translate3d(0,0,0) scale(1)",
+          },
+        }}
+        initial="hidden"
+        animate={controls}
         whileHover={{ transform: "translate3d(0,-5px,0) scale(1.1)" }}
         whileTap={{ transform: "translate3d(0,0,0) scale(0.9)" }}
         transition={{ duration: 0.3 }}
-        viewport={{ once: true }}
         className="fixed bottom-8 right-8 z-50 p-4 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-full shadow-lg hover:shadow-xl hover:shadow-[#25B8F2]/50 transition-all duration-300"
         aria-label="Scroll to top"
       >

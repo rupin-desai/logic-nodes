@@ -3,16 +3,58 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const LogosMarquee = () => {
-  // Sample company logos (you can replace these with actual logos)
+  // Technology logos with CDN links
   const logos = [
-    { name: "Microsoft", color: "#25B8F2" },
-    { name: "Amazon", color: "#EF5BB7" },
-    { name: "Google", color: "#A672C2" },
-    { name: "IBM", color: "#25B8F2" },
-    { name: "Oracle", color: "#EF5BB7" },
-    { name: "SAP", color: "#A672C2" },
-    { name: "Salesforce", color: "#25B8F2" },
-    { name: "Adobe", color: "#EF5BB7" },
+    {
+      name: "AWS",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
+    },
+    {
+      name: "Azure",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg",
+    },
+    {
+      name: "Google Cloud",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg",
+    },
+    {
+      name: "Docker",
+      image:
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+    },
+    {
+      name: "Jenkins",
+      image:
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg",
+    },
+    {
+      name: "JavaScript",
+      image:
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+    },
+    {
+      name: "React",
+      image:
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    },
+    {
+      name: "Python",
+      image:
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+    },
+    {
+      name: "Node.js",
+      image:
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    },
+    {
+      name: "TypeScript",
+      image:
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+    },
   ];
 
   // Duplicate for seamless loop
@@ -29,7 +71,7 @@ const LogosMarquee = () => {
           className="text-center mb-12"
         >
           <h3 className="text-gray-400 text-sm font-semibold tracking-wider uppercase mb-2">
-            Trusted By Industry Leaders
+            Technologies We Work With
           </h3>
         </motion.div>
 
@@ -43,33 +85,32 @@ const LogosMarquee = () => {
             animate={{
               transform: [
                 "translate3d(0,0,0)",
-                `translate3d(-${50 * logos.length}px,0,0)`,
+                `translate3d(-${logos.length * 200}px,0,0)`,
               ],
             }}
             transition={{
               transform: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 20,
+                duration: 30,
                 ease: "linear",
               },
             }}
-            className="flex gap-16"
+            className="flex gap-16 items-center"
           >
             {duplicatedLogos.map((logo, index) => (
               <div
                 key={index}
-                className="flex items-center justify-center min-w-[150px]"
+                className="flex items-center justify-center min-w-[150px] h-16 grayscale hover:grayscale-0 transition-all duration-300"
               >
-                <motion.div
-                  whileHover={{ transform: "translate3d(0,-3px,0)" }}
-                  className="text-2xl font-bold text-white/40 hover:text-white/80 transition-colors duration-300"
-                  style={{
-                    textShadow: `0 0 20px ${logo.color}40`,
+                <motion.img
+                  src={logo.image}
+                  alt={logo.name}
+                  whileHover={{
+                    transform: "translate3d(0,-5px,0) scale(1.1)",
                   }}
-                >
-                  {logo.name}
-                </motion.div>
+                  className="h-12 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300"
+                />
               </div>
             ))}
           </motion.div>

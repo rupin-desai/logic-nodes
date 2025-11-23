@@ -10,6 +10,7 @@ import {
   Linkedin,
   Twitter,
   Github,
+  Instagram,
 } from "lucide-react";
 
 const ContactForm = () => {
@@ -89,12 +90,25 @@ ${formData.message}`;
 
   const socialLinks = [
     {
+      icon: Instagram,
+      link: "https://www.instagram.com/logicnodestech/",
+      color: "#EF5BB7",
+    },
+    {
+      icon: Github,
+      link: "https://github.com/Logicnodes-Tech",
+      color: "#A672C2",
+    },
+    {
       icon: Linkedin,
-      link: "https://linkedin.com/company/logicnodes",
+      link: "https://www.linkedin.com/company/logicnodes-tech/",
       color: "#25B8F2",
     },
-    { icon: Twitter, link: "https://twitter.com/logicnodes", color: "#EF5BB7" },
-    { icon: Github, link: "https://github.com/logicnodes", color: "#A672C2" },
+    {
+      icon: Twitter,
+      link: "https://x.com/logicnodestech",
+      color: "#25B8F2",
+    },
   ];
 
   // hardcoded services from Services section (do not import)

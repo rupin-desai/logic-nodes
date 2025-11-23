@@ -13,7 +13,7 @@ const Portfolio = () => {
       image: "/images/promeat.png",
       description:
         "Website redesign and custom admin panel for an IIT Bombay-incubated plant-based meat startup.",
-      link: "https://promeat.example.com",
+      link: "https://promeat.in/",
     },
     {
       id: 2,
@@ -22,6 +22,7 @@ const Portfolio = () => {
       image: "/images/gaavbazaar.png",
       description:
         "A culturally rooted e-commerce platform empowering rural artisans, featuring a simplified admin for non-tech teams.",
+      link: "https://gaavbazaar.com/",
     },
     {
       id: 3,
@@ -30,6 +31,7 @@ const Portfolio = () => {
       image: "/images/sajeev.png",
       description:
         "A 'Garbage to Green' platform managing vermiculture projects with production tracking and organic farming resources.",
+      link: "https://sajeevkrushi.com/",
     },
     {
       id: 4,
@@ -38,6 +40,7 @@ const Portfolio = () => {
       image: "/images/cherries.png",
       description:
         "A feminine, visual-first lifestyle website for an influencer brand, featuring blog, merch, and collaboration modules.",
+      link: "https://cherriesandpeaches-dev.netlify.app/",
     },
     {
       id: 5,
@@ -46,7 +49,7 @@ const Portfolio = () => {
       image: "/images/iilos.png",
       description:
         "Educational platform for the International Institute of Logistics Studies, featuring a blended learning model and industry partnerships.",
-      link: "https://iilos.example.com",
+      link: "https://iilos.org/",
     },
     {
       id: 6,
@@ -55,6 +58,7 @@ const Portfolio = () => {
       image: "/images/realestate.png",
       description:
         "Visual-first property listing platform with gallery layouts, filtering, and a simple backend for agents.",
+      link: "https://realestatepicture.netlify.app/",
     },
     {
       id: 7,
@@ -63,6 +67,7 @@ const Portfolio = () => {
       image: "/images/outline.png",
       description:
         "A storytelling-driven agency website focusing on creative strategy, case studies, and conversion optimization.",
+      link: "https://outline-next-dev.netlify.app/",
     },
     {
       id: 8,
@@ -71,6 +76,7 @@ const Portfolio = () => {
       image: "/images/pptpro.png",
       description:
         "Presentation design SaaS platform featuring template showcases, slide previews, and a conversion-focused UI.",
+      link: "https://pptpro-react.netlify.app/",
     },
     {
       id: 9,
@@ -79,6 +85,7 @@ const Portfolio = () => {
       image: "/images/bharat.png",
       description:
         "Professional driver training platform with course structures, batch management, and student certification tracking.",
+      link: "https://bharatvishwasaarti.netlify.app/",
     },
     {
       id: 10,
@@ -87,7 +94,7 @@ const Portfolio = () => {
       image: "/images/expo.png",
       description:
         "Complete website built from scratch without wireframes, creating a structure for exhibitors and visitors.",
-      link: "https://expoindia.example.com",
+      link: "https://www.expoindia.in/",
     },
     {
       id: 11,
@@ -96,6 +103,7 @@ const Portfolio = () => {
       image: "/images/ecobird.png",
       description:
         "A purpose-driven recycling website using icon-based storytelling to build trust and transparency.",
+      link: "https://ecobirddrecycling.com/",
     },
     {
       id: 12,
@@ -104,6 +112,7 @@ const Portfolio = () => {
       image: "/images/suman.png",
       description:
         "Modern industrial redesign for a steel supplier, focusing on product categorization and corporate credibility.",
+      link: "https://suman-steel-dev.netlify.app/",
     },
     {
       id: 13,
@@ -112,6 +121,7 @@ const Portfolio = () => {
       image: "/images/pronology.png",
       description:
         "Corporate website built from minimal inputs, establishing a professional digital identity and service structure.",
+      link: "https://pronology-dev.netlify.app/",
     },
     {
       id: 14,
@@ -120,6 +130,7 @@ const Portfolio = () => {
       image: "/images/shubhaam.png",
       description:
         "Trust-centric logistics website highlighting fleet capabilities, warehousing, and operational transparency.",
+      link: "https://shubhaamlogistics.com/",
     },
     {
       id: 15,
@@ -128,6 +139,7 @@ const Portfolio = () => {
       image: "/images/silverlining.png",
       description:
         "Mental health wellness center website designed with empathy, soft visuals, and accessible service categorization.",
+      link: "https://digitalteamwork.co.in/thesilverlining/",
     },
     {
       id: 16,
@@ -136,6 +148,7 @@ const Portfolio = () => {
       image: "/images/autocrm.png",
       description:
         "Full CRM transformation for a car decor business, digitizing inventory, sales, and employee management.",
+      link: "https://crm.maulicardecor.com/",
     },
     {
       id: 17,
@@ -144,6 +157,7 @@ const Portfolio = () => {
       image: "/images/alkem.png",
       description:
         "Internal employee events portal for a pharma giant, delivered in 3 weeks with API integration.",
+      link: "https://demo-eventsmanager.netlify.app/home",
     },
     {
       id: 18,
@@ -152,7 +166,7 @@ const Portfolio = () => {
       image: "/images/safarisutra.png",
       description:
         "Immersive wildlife travel website with earthy tones, showcasing curated itineraries and luxury safaris.",
-      link: "https://safarisutra.example.com",
+      link: "https://thesafarisutra.com/",
     },
     {
       id: 19,
@@ -161,7 +175,7 @@ const Portfolio = () => {
       image: "/images/chalogoa.png",
       description:
         "Goa-specialist travel platform featuring local experiences, tours, and an integrated booking flow.",
-      link: "https://chalogoa.example.com",
+      link: "https://chalogoa.com/",
     },
     {
       id: 20,
@@ -170,6 +184,7 @@ const Portfolio = () => {
       image: "/images/passmaldives.png",
       description:
         "Premium destination platform for Maldives resorts and activities, featuring a modular content structure.",
+      link: "https://passmaldives-next-dev.netlify.app/",
     },
     {
       id: 21,
@@ -178,6 +193,7 @@ const Portfolio = () => {
       image: "/images/ladakh.png",
       description:
         "Specialist high-altitude travel website with custom journey planning and destination-specific branding.",
+      link: "https://letsladakh.com/",
     },
     {
       id: 22,
@@ -186,6 +202,7 @@ const Portfolio = () => {
       image: "/images/sellitfast.png",
       description:
         "Electronics resale marketplace with a multi-vendor system, role-based admin, and payment integration.",
+      link: "https://sellitfast-dev.netlify.app/",
     },
     {
       id: 23,
@@ -194,6 +211,7 @@ const Portfolio = () => {
       image: "/images/school.png",
       description:
         "Modern K-12 school website with document repositories, curriculum showcases, and admission portals.",
+      link: "https://mkhsancheti.com/",
     },
     {
       id: 24,
@@ -202,7 +220,7 @@ const Portfolio = () => {
       image: "/images/cheforeca.png",
       description:
         "Premium fine-dining website with dynamic menus, gallery showcases, and reservation integration.",
-      link: "https://cheforeca.example.com",
+      link: "https://cheforeca.piexxi.in/",
     },
     {
       id: 25,
@@ -211,6 +229,7 @@ const Portfolio = () => {
       image: "/images/smile.png",
       description:
         "Full-service digital agency portfolio highlighting design, marketing, and video production capabilities.",
+      link: "https://smilecreative.agency/",
     },
     {
       id: 26,
@@ -219,6 +238,7 @@ const Portfolio = () => {
       image: "/images/abo.png",
       description:
         "Ophthalmology hospital website featuring doctor profiles, equipment showcases, and appointment booking.",
+      link: "https://aboeye.com/",
     },
     {
       id: 27,
@@ -227,6 +247,7 @@ const Portfolio = () => {
       image: "/images/ignition.png",
       description:
         "Venture capital advisory site reflecting strategic authority, thought leadership, and startup ecosystems.",
+      link: "https://ignitioncapitaladvisors.in/",
     },
     {
       id: 28,
@@ -235,6 +256,7 @@ const Portfolio = () => {
       image: "/images/spectro.png",
       description:
         "B2B website for cleanroom infrastructure, highlighting technical competence and industrial precision.",
+      link: "https://spectrokavs.com/",
     },
     {
       id: 29,
@@ -243,6 +265,7 @@ const Portfolio = () => {
       image: "/images/strongbong.png",
       description:
         "Premium smoke accessory store with age-gated e-commerce flows and product variant management.",
+      link: "https://strongbong.co.in/",
     },
     {
       id: 30,
@@ -251,6 +274,7 @@ const Portfolio = () => {
       image: "/images/campus.png",
       description:
         "Student networking app with verified onboarding, matching algorithms, and safe chat modules.",
+      
     },
     {
       id: 31,
@@ -259,6 +283,7 @@ const Portfolio = () => {
       image: "/images/onboarding.png",
       description:
         "Automated customer onboarding tool with dynamic pricing, digital signatures, and invoice generation.",
+        link: "https://yanisa-admin.netlify.app/services",
     },
   ];
 
