@@ -9,10 +9,14 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setMounted(true);
+    // schedule mounted state update after paint to avoid synchronous setState in effect
+    const raf = requestAnimationFrame(() => setMounted(true));
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const scrollToSection = (sectionId) => {
