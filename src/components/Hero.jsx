@@ -18,38 +18,17 @@ const Hero = () => {
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          animate={{
-            rotate: [0, 90, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute top-20 left-10 w-72 h-72 bg-[#25B8F2]/10 rounded-full blur-3xl"
+        <div
+          className="bg-blob bg-blob-blue absolute top-20 left-10 w-72 h-72 rounded-full animate-blob"
+          style={{ animationDuration: "20s" }}
         />
-        <motion.div
-          animate={{
-            rotate: [0, -90, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute bottom-20 right-10 w-96 h-96 bg-[#EF5BB7]/10 rounded-full blur-3xl"
+        <div
+          className="bg-blob bg-blob-pink absolute bottom-20 right-10 w-96 h-96 rounded-full animate-blob"
+          style={{ animationDuration: "15s", animationDirection: "reverse" }}
         />
-        <motion.div
-          animate={{
-            rotate: [0, 180, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#A672C2]/10 rounded-full blur-3xl"
+        <div
+          className="bg-blob bg-blob-purple absolute top-1/2 left-1/2 w-96 h-96 rounded-full transform -translate-x-1/2 -translate-y-1/2 animate-blob"
+          style={{ animationDuration: "25s" }}
         />
       </div>
 

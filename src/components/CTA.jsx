@@ -21,29 +21,13 @@ const CTA = () => {
     <section className="relative py-24 overflow-hidden bg-linear-to-br from-[#282B4C] via-[#1a1d35] to-[#282B4C]">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 180, 360],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#25B8F2]/10 rounded-full blur-3xl"
+        <div
+          className="bg-blob bg-blob-blue absolute top-1/4 left-1/4 w-64 h-64 rounded-full animate-blob"
+          style={{ animationDuration: "20s" }}
         />
-        <motion.div
-          animate={{
-            scale: [1.2, 1, 1.2],
-            rotate: [360, 180, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-[#EF5BB7]/10 rounded-full blur-3xl"
+        <div
+          className="bg-blob bg-blob-pink absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full animate-blob"
+          style={{ animationDuration: "15s", animationDirection: "reverse" }}
         />
       </div>
 

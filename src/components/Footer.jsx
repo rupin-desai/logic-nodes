@@ -117,18 +117,8 @@ const Footer = () => {
     <footer className="relative bg-linear-to-b from-[#1a1d35] to-[#0f1020] pt-20 pb-8 overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden opacity-20" ref={ref}>
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate={controls}
-          className="absolute top-0 left-1/4 w-96 h-96 bg-[#25B8F2]/20 rounded-full blur-3xl"
-        />
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate={controls}
-          className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#EF5BB7]/20 rounded-full blur-3xl"
-        />
+        <div className="bg-blob bg-blob-blue absolute top-0 left-1/4 w-96 h-96 rounded-full animate-blob" />
+        <div className="bg-blob bg-blob-pink absolute bottom-0 right-1/4 w-96 h-96 rounded-full animate-blob" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

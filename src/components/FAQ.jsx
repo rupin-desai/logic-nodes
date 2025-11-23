@@ -65,30 +65,8 @@ const FAQ = () => {
     <section id="faq" className="py-20 bg-[#282B4C] relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 90, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute top-20 right-10 w-96 h-96 bg-[#25B8F2]/5 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            rotate: [0, -90, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute bottom-20 left-10 w-96 h-96 bg-[#EF5BB7]/5 rounded-full blur-3xl"
-        />
+        <div className="bg-blob bg-blob-blue absolute top-20 right-10 w-96 h-96 rounded-full animate-blob" />
+        <div className="bg-blob bg-blob-pink absolute bottom-20 left-10 w-96 h-96 rounded-full animate-blob" />
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

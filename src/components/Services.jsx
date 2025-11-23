@@ -70,40 +70,8 @@ const Services = () => {
     >
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          animate={{
-            rotate: [0, 90, 0],
-            opacity: [0.05, 0.15, 0.05],
-            transform: [
-              "translate3d(0,0,0)",
-              "translate3d(10px,0,0)",
-              "translate3d(0,0,0)",
-            ],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-0 right-1/4 w-96 h-96 bg-[#25B8F2]/20 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            rotate: [0, -90, 0],
-            opacity: [0.05, 0.15, 0.05],
-            transform: [
-              "translate3d(0,0,0)",
-              "translate3d(-10px,0,0)",
-              "translate3d(0,0,0)",
-            ],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#EF5BB7]/20 rounded-full blur-3xl"
-        />
+        <div className="bg-blob bg-blob-blue absolute top-0 right-1/4 w-96 h-96 rounded-full animate-blob" />
+        <div className="bg-blob bg-blob-pink absolute bottom-0 left-1/4 w-96 h-96 rounded-full animate-blob" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

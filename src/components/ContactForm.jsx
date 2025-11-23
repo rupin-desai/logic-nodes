@@ -128,35 +128,13 @@ ${formData.message}`;
     >
       {/* Background Animation */}
       <div className="absolute inset-0 overflow-hidden opacity-30">
-        <motion.div
-          animate={{
-            transform: [
-              "translate3d(0,0,0)",
-              "translate3d(20px,-20px,0)",
-              "translate3d(0,0,0)",
-            ],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-0 right-0 w-96 h-96 bg-[#25B8F2]/20 rounded-full blur-3xl"
+        <div
+          className="bg-blob bg-blob-blue absolute top-0 right-0 w-96 h-96 rounded-full animate-blob"
+          style={{ animationDuration: "10s" }}
         />
-        <motion.div
-          animate={{
-            transform: [
-              "translate3d(0,0,0)",
-              "translate3d(-20px,20px,0)",
-              "translate3d(0,0,0)",
-            ],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute bottom-0 left-0 w-96 h-96 bg-[#EF5BB7]/20 rounded-full blur-3xl"
+        <div
+          className="bg-blob bg-blob-pink absolute bottom-0 left-0 w-96 h-96 rounded-full animate-blob"
+          style={{ animationDuration: "8s", animationDirection: "reverse" }}
         />
       </div>
 

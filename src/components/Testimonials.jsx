@@ -62,8 +62,8 @@ const Testimonials = () => {
     >
       {/* Background Effects */}
       <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#25B8F2] rounded-full filter blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#EF5BB7] rounded-full filter blur-[120px]" />
+        <div className="bg-blob bg-blob-blue absolute top-1/4 left-1/4 w-96 h-96 rounded-full animate-blob" />
+        <div className="bg-blob bg-blob-pink absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full animate-blob" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -220,7 +220,6 @@ const Testimonials = () => {
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );
