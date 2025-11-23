@@ -308,9 +308,9 @@ const Portfolio = () => {
             <motion.span
               initial={{
                 opacity: 0,
-                transform: "translate3d(0,20px,0) scale(0.98)",
+                transform: "translate3d(0,20px,0) ",
               }}
-              animate={{ opacity: 1, transform: "translate3d(0,0,0) scale(1)" }}
+              animate={{ opacity: 1, transform: "translate3d(0,0,0) " }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="inline-block px-4 py-2 rounded-full bg-[#25B8F2]/10 border border-[#25B8F2]/30 text-[#25B8F2] text-sm font-semibold mb-4"
             >

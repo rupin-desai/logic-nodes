@@ -145,24 +145,20 @@ const Testimonials = () => {
                 {/* Rating Stars */}
                 <div className="flex gap-1 mb-6">
                   {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                    <motion.div
+                    <div
                       key={i}
-                      initial={{
-                        opacity: 0,
-                        transform: "translate3d(0,10px,0) scale(0)",
+                      className="opacity-0 animate-fade-up"
+                      style={{
+                        animationDelay: `${i * 0.06}s`,
+                        animationFillMode: "forwards",
                       }}
-                      animate={{
-                        opacity: 1,
-                        transform: "translate3d(0,0,0) scale(1)",
-                      }}
-                      transition={{ delay: i * 0.1 }}
                     >
                       <Star
                         size={24}
                         fill={testimonials[currentIndex].color}
                         stroke={testimonials[currentIndex].color}
                       />
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
 

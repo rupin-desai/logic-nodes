@@ -135,7 +135,7 @@ const Footer = () => {
               <motion.img
                 src="/logo_full_white.png"
                 alt="Logic Nodes"
-                whileHover={{ transform: "translate3d(0,0,0) scale(1.05)" }}
+                whileHover={{ transform: "translate3d(0,0,0) " }}
                 className="h-24 md:h-32 mb-4 cursor-pointer inline-block"
               />
             </Link>
@@ -148,19 +148,16 @@ const Footer = () => {
             {/* Social Links */}
             <div className="flex gap-3">
               {socialLinks.map((social, index) => (
-                <motion.a
+                <a
                   key={index}
                   href={social.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  variants={fadeUp}
-                  whileHover={{ transform: "translate3d(0,-3px,0) scale(1.1)" }}
-                  whileTap={{ transform: "translate3d(0,0,0) scale(0.95)" }}
-                  className="p-3 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 group"
+                  className="p-3 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 transition-transform duration-200 transform hover:-translate-y-1"
                   aria-label={social.name}
                 >
                   <social.icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
-                </motion.a>
+                </a>
               ))}
             </div>
           </motion.div>
@@ -249,28 +246,13 @@ const Footer = () => {
       </div>
 
       {/* Scroll to Top Button */}
-      <motion.button
+      <button
         onClick={scrollToTop}
-        variants={{
-          hidden: {
-            opacity: 0,
-            transform: "translate3d(0,0,0) scale(0)",
-          },
-          visible: {
-            opacity: 1,
-            transform: "translate3d(0,0,0) scale(1)",
-          },
-        }}
-        initial="hidden"
-        animate={controls}
-        whileHover={{ transform: "translate3d(0,-5px,0) scale(1.1)" }}
-        whileTap={{ transform: "translate3d(0,0,0) scale(0.9)" }}
-        transition={{ duration: 0.3 }}
-        className="fixed bottom-8 right-8 z-50 p-4 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-full shadow-lg hover:shadow-xl hover:shadow-[#25B8F2]/50 transition-all duration-300"
+        className="fixed bottom-8 right-8 z-50 p-4 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-full shadow-lg hover:shadow-xl hover:shadow-[#25B8F2]/50 transition-transform duration-200 transform hover:-translate-y-1"
         aria-label="Scroll to top"
       >
         <ArrowUp className="w-6 h-6" />
-      </motion.button>
+      </button>
     </footer>
   );
 };

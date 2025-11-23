@@ -203,26 +203,12 @@ ${formData.message}`;
             {/* Contact Cards */}
             <div className="space-y-6">
               {contactInfo.map((info, index) => (
-                <motion.a
+                <a
                   key={index}
                   href={info.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  initial={{
-                    opacity: 0,
-                    transform: "translate3d(-20px,0,0)",
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    transform: "translate3d(0,0,0)",
-                  }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{
-                    transform: "translate3d(10px,0,0)",
-                    scale: 1.02,
-                  }}
-                  className="flex items-start gap-4 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 group cursor-pointer"
+                  className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 duration-300 group cursor-pointer hover:-translate-y-1 transform transition-transform"
                 >
                   <div
                     className="p-3 rounded-lg"
@@ -242,7 +228,7 @@ ${formData.message}`;
                       {info.value}
                     </p>
                   </div>
-                </motion.a>
+                </a>
               ))}
             </div>
 
@@ -251,23 +237,13 @@ ${formData.message}`;
               <p className="text-gray-400 text-sm mb-4">Follow Us</p>
               <div className="flex gap-4">
                 {socialLinks.map((social, index) => (
-                  <motion.a
+                  <a
                     key={index}
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{
-                      transform: "translate3d(0,-5px,0)",
-                      scale: 1.1,
-                    }}
-                    whileTap={{
-                      transform: "translate3d(0,2px,0)",
-                      scale: 0.95,
-                    }}
-                    className="p-3 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 cursor-pointer"
-                    style={{
-                      boxShadow: `0 0 0 ${social.color}00`,
-                    }}
+                    className="p-3 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 transition-transform duration-200 transform hover:-translate-y-1"
+                    style={{ boxShadow: `0 0 0 ${social.color}00` }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.boxShadow = `0 0 20px ${social.color}40`;
                     }}
@@ -279,7 +255,7 @@ ${formData.message}`;
                       className="w-5 h-5"
                       style={{ color: social.color }}
                     />
-                  </motion.a>
+                  </a>
                 ))}
               </div>
             </div>
@@ -298,22 +274,22 @@ ${formData.message}`;
                 <motion.div
                   initial={{
                     opacity: 0,
-                    transform: "translate3d(0,20px,0) scale(0.8)",
+                    transform: "translate3d(0,20px,0) ",
                   }}
                   animate={{
                     opacity: 1,
-                    transform: "translate3d(0,0,0) scale(1)",
+                    transform: "translate3d(0,0,0) ",
                   }}
                   exit={{
                     opacity: 0,
-                    transform: "translate3d(0,20px,0) scale(0.8)",
+                    transform: "translate3d(0,20px,0)",
                   }}
                   className="absolute inset-0 flex items-center justify-center bg-[#282B4C]/95 backdrop-blur-sm rounded-2xl z-10"
                 >
                   <div className="text-center">
                     <motion.div
-                      initial={{ transform: "translate3d(0,0,0) scale(0)" }}
-                      animate={{ transform: "translate3d(0,0,0) scale(1)" }}
+                      initial={{ transform: "translate3d(0,0,0) " }}
+                      animate={{ transform: "translate3d(0,0,0) " }}
                       transition={{ delay: 0.2, type: "spring" }}
                     >
                       <CheckCircle className="w-20 h-20 text-[#25B8F2] mx-auto mb-4" />

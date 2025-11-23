@@ -110,13 +110,9 @@ const Projects = () => {
                   </span>
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <motion.div
-                    initial={{ transform: "translate3d(0,0,0) scale(0)" }}
-                    whileHover={{ transform: "translate3d(0,0,0) scale(1)" }}
-                    className="bg-white/10 backdrop-blur-sm p-4 rounded-full"
-                  >
+                  <div className="bg-white/10 p-4 rounded-full transition-transform duration-200 transform scale-100">
                     <ExternalLink className="w-8 h-8 text-white" />
-                  </motion.div>
+                  </div>
                 </div>
 
                 <div className="absolute bottom-4 right-4 text-white/30 font-bold text-4xl">
@@ -161,8 +157,8 @@ const Projects = () => {
           className="text-center"
         >
           <motion.button
-            whileHover={{ transform: "translate3d(0,-5px,0) scale(1.05)" }}
-            whileTap={{ transform: "translate3d(0,2px,0) scale(0.95)" }}
+            whileHover={{ transform: "translate3d(0,-5px,0)" }}
+            whileTap={{ transform: "translate3d(0,2px,0)" }}
             onClick={() => navigate("/portfolio")}
             className="group inline-flex cursor-pointer items-center gap-2 px-8 py-4 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl hover:shadow-[#25B8F2]/50 transition-all duration-300"
           >

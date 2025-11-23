@@ -29,9 +29,9 @@ html {
 
 /* subtle movement animation (GPU-friendly: transform only) */
 @keyframes blobMove {
-  0% { transform: translate3d(0,0,0) scale(1); opacity: 0.16; }
-  50% { transform: translate3d(18px,-12px,0) scale(1.05); opacity: 0.20; }
-  100% { transform: translate3d(0,0,0) scale(1); opacity: 0.16; }
+  0% { transform: translate3d(0,0,0); opacity: 0.16; }
+  50% { transform: translate3d(18px,-12px,0) ; opacity: 0.20; }
+  100% { transform: translate3d(0,0,0); opacity: 0.16; }
 }
 .animate-blob { animation: blobMove 14s ease-in-out infinite; }
 

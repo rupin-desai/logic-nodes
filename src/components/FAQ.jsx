@@ -79,10 +79,10 @@ const FAQ = () => {
           className="text-center mb-16"
         >
           <motion.div
-            initial={{ opacity: 0, transform: "translate3d(0,0,0) scale(0.8)" }}
+            initial={{ opacity: 0, transform: "translate3d(0,0,0) " }}
             whileInView={{
               opacity: 1,
-              transform: "translate3d(0,0,0) scale(1)",
+              transform: "translate3d(0,0,0)",
             }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
@@ -117,10 +117,7 @@ const FAQ = () => {
               viewport={{ once: true }}
               className="group"
             >
-              <motion.div
-                whileHover={{ scale: 1.01 }}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-300"
-              >
+              <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-300">
                 {/* Question */}
                 <button
                   onClick={() => toggleFAQ(index)}
@@ -183,7 +180,7 @@ const FAQ = () => {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </motion.div>
+              </div>
             </motion.div>
           ))}
         </div>

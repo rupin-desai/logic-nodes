@@ -43,11 +43,11 @@ const CTA = () => {
           <motion.div
             initial={{
               opacity: 0,
-              transform: "translate3d(0,20px,0) scale(0.8)",
+              transform: "translate3d(0,20px,0) ",
             }}
             whileInView={{
               opacity: 1,
-              transform: "translate3d(0,0,0) scale(1)",
+              transform: "translate3d(0,0,0)",
             }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
@@ -95,13 +95,9 @@ const CTA = () => {
             className="flex flex-wrap justify-center gap-8 mb-12"
           >
             {features.map((feature, index) => (
-              <motion.div
+              <div
                 key={index}
-                whileHover={{
-                  transform: "translate3d(0,-5px,0) scale(1.05)",
-                }}
-                whileTap={{ transform: "translate3d(0,2px,0) scale(0.95)" }}
-                className="flex items-center gap-3"
+                className="flex items-center gap-3 transform transition-transform duration-200 hover:-translate-y-1"
               >
                 <div
                   className="p-3 rounded-full"
@@ -116,7 +112,7 @@ const CTA = () => {
                   />
                 </div>
                 <span className="text-white font-semibold">{feature.text}</span>
-              </motion.div>
+              </div>
             ))}
           </motion.div>
 
@@ -128,13 +124,9 @@ const CTA = () => {
             viewport={{ once: true }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <motion.button
+            <button
               onClick={scrollToContact}
-              whileHover={{
-                transform: "translate3d(0,-3px,0) scale(1.05)",
-              }}
-              whileTap={{ transform: "translate3d(0,2px,0) scale(0.95)" }}
-              className="group relative px-8 py-4 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] rounded-full font-bold text-white text-lg shadow-lg hover:shadow-[#25B8F2]/50 transition-all duration-300 overflow-hidden"
+              className="group relative px-8 py-4 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] rounded-full font-bold text-white text-lg shadow-lg hover:shadow-[#25B8F2]/50 transition-all duration-300 overflow-hidden transform hover:-translate-y-1"
             >
               <span className="relative z-10 flex items-center gap-2">
                 Get Started Now
@@ -146,14 +138,14 @@ const CTA = () => {
                 whileHover={{ transform: "translate3d(0,0,0)" }}
                 transition={{ duration: 0.3 }}
               />
-            </motion.button>
+            </button>
 
             <motion.button
               onClick={scrollToContact}
               whileHover={{
-                transform: "translate3d(0,-3px,0) scale(1.05)",
+                transform: "translate3d(0,-3px,0) ",
               }}
-              whileTap={{ transform: "translate3d(0,2px,0) scale(0.95)" }}
+              whileTap={{ transform: "translate3d(0,2px,0) " }}
               className="px-8 py-4 border-2 border-[#25B8F2] rounded-full font-bold text-white text-lg hover:bg-[#25B8F2]/10 transition-all duration-300"
             >
               Schedule a Call
