@@ -1,7 +1,7 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
@@ -17,23 +17,61 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // robust helper: wait for DOM element to exist (or route to change) then scroll
+  const ensureScrollToSectionAfterNavigate = (
+    targetPath = "/",
+    sectionId,
+    options = {}
+  ) => {
+    const { maxFrames = 120 } = options; // default ~2s at 60fps
+    let frames = 0;
+
+    const tryScroll = () => {
+      frames += 1;
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+      // if too many tries, stop to avoid infinite loop
+      if (frames >= maxFrames) return;
+      requestAnimationFrame(tryScroll);
+    };
+
+    // start polling after next paint so route has chance to render
+    requestAnimationFrame(tryScroll);
+  };
+
   const scrollToSection = (sectionId) => {
-    // First navigate to home if not already there
+    // If not on home route, navigate then wait for element to exist before scrolling.
     if (window.location.pathname !== "/") {
       navigate("/");
-      setTimeout(() => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }, 100);
+      ensureScrollToSectionAfterNavigate("/", sectionId);
     } else {
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        // fallback: poll briefly in case element is not mounted yet
+        ensureScrollToSectionAfterNavigate("/", sectionId);
       }
     }
     setIsOpen(false);
+  };
+
+  const goToPortfolio = () => {
+    setIsOpen(false);
+    navigate("/portfolio");
+    // ensure we're at top after route settles
+    const tryTop = (frames = 0) => {
+      if (window.location.pathname === "/portfolio") {
+        window.scrollTo({ top: 0, behavior: "auto" });
+        return;
+      }
+      if (frames > 120) return;
+      requestAnimationFrame(() => tryTop(frames + 1));
+    };
+    requestAnimationFrame(() => tryTop(0));
   };
 
   const navLinks = [
@@ -82,15 +120,16 @@ const Navbar = () => {
                 {link.name}
               </motion.button>
             ))}
-            <Link to="/portfolio">
-              <motion.button
-                whileHover={{ transform: "translate3d(0,-3px,0)" }}
-                whileTap={{ transform: "translate3d(0,2px,0)" }}
-                className="px-6 py-2 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-full font-semibold hover:shadow-lg hover:shadow-[#25B8F2]/50 transition-all duration-300 cursor-pointer"
-              >
-                Portfolio
-              </motion.button>
-            </Link>
+
+            {/* Desktop Portfolio button uses same navigate + ensureScroll logic */}
+            <motion.button
+              whileHover={{ transform: "translate3d(0,-3px,0)" }}
+              whileTap={{ transform: "translate3d(0,2px,0)" }}
+              onClick={goToPortfolio}
+              className="px-6 py-2 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-full font-semibold hover:shadow-lg hover:shadow-[#25B8F2]/50 transition-all duration-300 cursor-pointer"
+            >
+              Portfolio
+            </motion.button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -99,6 +138,8 @@ const Navbar = () => {
               whileTap={{ transform: "translate3d(0,2px,0)" }}
               onClick={() => setIsOpen(!isOpen)}
               className="text-white p-2 cursor-pointer"
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </motion.button>
@@ -109,16 +150,16 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <div className="md:hidden bg-[#282B4C]/98">
+          <div id="mobile-menu" className="md:hidden bg-[#282B4C]/98">
             <div className="px-4 pt-2 pb-4 space-y-3">
               {navLinks.map((link) => (
                 <button
                   key={link.id}
                   onClick={() => {
-                    // close menu immediately so it no longer overlays content,
-                    // then run scroll after a short delay to allow layout update / exit animation
+                    // close menu and delegate navigation/scroll to scrollToSection which handles cross-page cases
                     setIsOpen(false);
-                    setTimeout(() => scrollToSection(link.id), 150);
+                    // call immediately; scrollToSection will navigate and poll if needed
+                    scrollToSection(link.id);
                   }}
                   className="block w-full text-left px-4 py-3 text-white hover:text-[#25B8F2] hover:bg-white/5 rounded-lg transition-all duration-300 cursor-pointer"
                 >
@@ -127,11 +168,7 @@ const Navbar = () => {
               ))}
 
               <button
-                onClick={() => {
-                  setIsOpen(false);
-                  // small delay so nav collapses before navigating
-                  setTimeout(() => navigate("/portfolio"), 150);
-                }}
+                onClick={goToPortfolio}
                 className="w-full px-4 py-3 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-lg font-semibold cursor-pointer"
               >
                 Portfolio

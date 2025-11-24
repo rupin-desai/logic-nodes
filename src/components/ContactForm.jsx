@@ -46,8 +46,8 @@ const ContactForm = () => {
     {
       icon: Phone,
       title: "Phone",
-      value: "+91 93260 65063\n+91 98604 15774",
-      link: "tel:+919326065063",
+      // keep numbers separate and human-friendly for display
+      numbers: ["+91 93260 65063", "+91 98604 15774"],
       color: "#A672C2",
     },
   ];
@@ -217,13 +217,53 @@ ${formData.message}`;
             <div className="space-y-6">
               {contactInfo.map((info, index) => {
                 const Icon = info.icon;
+                // don't nest anchor tags. if there are multiple numbers render the card as a div
+                if (info.numbers) {
+                  return (
+                    <div
+                      key={index}
+                      className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300"
+                    >
+                      <div
+                        className="p-3 rounded-lg"
+                        style={{
+                          background: `linear-gradient(135deg, ${info.color}20, ${info.color}10)`,
+                          boxShadow: `0 0 12px ${info.color}20`,
+                        }}
+                      >
+                        <Icon
+                          className="w-6 h-6"
+                          style={{ color: info.color }}
+                        />
+                      </div>
+                      <div>
+                        <p className="text-gray-400 text-sm mb-1">
+                          {info.title}
+                        </p>
+                        <div className="flex flex-col">
+                          {info.numbers.map((num, i) => (
+                            <a
+                              key={i}
+                              href={"tel:" + num.replace(/[^\d+]/g, "")}
+                              className="text-white font-semibold hover:text-[#25B8F2] transition-colors"
+                            >
+                              {num}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+
+                // single-link entries (address / email) keep as anchor
                 return (
                   <a
                     key={index}
-                    href={info.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 group"
+                    href={info.link || "#"}
+                    target={info.link ? "_blank" : undefined}
+                    rel={info.link ? "noopener noreferrer" : undefined}
+                    className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300"
                   >
                     <div
                       className="p-3 rounded-lg"
@@ -236,7 +276,7 @@ ${formData.message}`;
                     </div>
                     <div>
                       <p className="text-gray-400 text-sm mb-1">{info.title}</p>
-                      <p className="text-white font-semibold group-hover:text-[#25B8F2] transition-colors">
+                      <p className="text-white font-semibold hover:text-[#25B8F2] transition-colors">
                         {info.value}
                       </p>
                     </div>

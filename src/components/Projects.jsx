@@ -185,7 +185,10 @@ const Projects = () => {
           <motion.button
             whileHover={{ transform: "translate3d(0,-5px,0) scale(1.05)" }}
             whileTap={{ transform: "translate3d(0,2px,0) scale(0.95)" }}
-            onClick={() => navigate("/portfolio")}
+            onClick={() => {
+              navigate("/portfolio");
+              window.scrollTo({ top: 0, behavior: "auto" });
+            }}
             className="group inline-flex cursor-pointer items-center gap-2 px-8 py-4 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl hover:shadow-[#25B8F2]/50 transition-all duration-300"
           >
             View All Projects
