@@ -1,0 +1,3 @@
+# Netlify redirects: serve index.html for all routes (SPA fallback)
+# This fixes refresh/route 404s by returning index.html for unknown paths
+/*    /index.html   200
