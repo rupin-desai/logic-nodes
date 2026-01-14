@@ -1,5 +1,4 @@
 import React from "react";
-// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import Footer from "../components/Footer";
@@ -71,6 +70,15 @@ const Portfolio = () => {
     },
     {
       id: 8,
+      title: "Aerionyx",
+      category: "DMC Representation Company",
+      image: "/images/aerionyx.png",
+      description:
+        "DMC representation company website showcasing destination management services and travel partnerships.",
+      link: "https://aerionyxglobalreps.com/",
+    },
+    {
+      id: 9,
       title: "PPTPro",
       category: "SaaS",
       image: "/images/pptpro.png",
@@ -79,7 +87,7 @@ const Portfolio = () => {
       link: "https://pptpro-react.netlify.app/",
     },
     {
-      id: 9,
+      id: 10,
       title: "Bharat Vishwa Saarti",
       category: "Training Institute",
       image: "/images/bharat.png",
@@ -88,7 +96,7 @@ const Portfolio = () => {
       link: "https://bharatvishwasaarti.netlify.app/",
     },
     {
-      id: 10,
+      id: 11,
       title: "Expo India",
       category: "Events",
       image: "/images/expo.png",
@@ -97,7 +105,7 @@ const Portfolio = () => {
       link: "https://www.expoindia.in/",
     },
     {
-      id: 11,
+      id: 12,
       title: "EcoBird Recycling",
       category: "Waste Management",
       image: "/images/ecobird.png",
@@ -106,7 +114,7 @@ const Portfolio = () => {
       link: "https://ecobirddrecycling.com/",
     },
     {
-      id: 12,
+      id: 13,
       title: "Suman Steels",
       category: "Industrial",
       image: "/images/suman.png",
@@ -115,7 +123,7 @@ const Portfolio = () => {
       link: "https://suman-steel-dev.netlify.app/",
     },
     {
-      id: 13,
+      id: 14,
       title: "Pronology",
       category: "Corporate",
       image: "/images/pronology.png",
@@ -124,7 +132,7 @@ const Portfolio = () => {
       link: "https://pronology-dev.netlify.app/",
     },
     {
-      id: 14,
+      id: 15,
       title: "Shubhaam Logistics",
       category: "Logistics",
       image: "/images/shubhaam.png",
@@ -133,7 +141,7 @@ const Portfolio = () => {
       link: "https://shubhaamlogistics.com/",
     },
     {
-      id: 15,
+      id: 16,
       title: "The Silver Lining",
       category: "Healthcare",
       image: "/images/silverlining.png",
@@ -142,7 +150,7 @@ const Portfolio = () => {
       link: "https://digitalteamwork.co.in/thesilverlining/",
     },
     {
-      id: 16,
+      id: 17,
       title: "Automotive CRM",
       category: "Web App / CRM",
       image: "/images/autocrm.png",
@@ -151,7 +159,7 @@ const Portfolio = () => {
       link: "https://crm.maulicardecor.com/",
     },
     {
-      id: 17,
+      id: 18,
       title: "Alkem Events Portal",
       category: "Enterprise Internal",
       image: "/images/alkem.png",
@@ -160,7 +168,7 @@ const Portfolio = () => {
       link: "https://demo-eventsmanager.netlify.app/home",
     },
     {
-      id: 18,
+      id: 19,
       title: "Safari Sutra",
       category: "Luxury Travel",
       image: "/images/safarisutra.png",
@@ -169,7 +177,7 @@ const Portfolio = () => {
       link: "https://thesafarisutra.com/",
     },
     {
-      id: 19,
+      id: 20,
       title: "ChaloGoa",
       category: "Travel Marketplace",
       image: "/images/chalogoa.png",
@@ -178,7 +186,7 @@ const Portfolio = () => {
       link: "https://chalogoa.com/",
     },
     {
-      id: 20,
+      id: 21,
       title: "Pass Maldives",
       category: "Luxury Travel",
       image: "/images/passmaldives.png",
@@ -187,7 +195,7 @@ const Portfolio = () => {
       link: "https://passmaldives-next-dev.netlify.app/",
     },
     {
-      id: 21,
+      id: 22,
       title: "Let's Ladakh",
       category: "Niche Travel",
       image: "/images/ladakh.png",
@@ -196,7 +204,7 @@ const Portfolio = () => {
       link: "https://letsladakh.com/",
     },
     {
-      id: 22,
+      id: 23,
       title: "SellItFast",
       category: "Marketplace",
       image: "/images/sellitfast.png",
@@ -205,7 +213,7 @@ const Portfolio = () => {
       link: "https://sellitfast-dev.netlify.app/",
     },
     {
-      id: 23,
+      id: 24,
       title: "MKH Sancheti School",
       category: "Education",
       image: "/images/school.png",
@@ -214,7 +222,7 @@ const Portfolio = () => {
       link: "https://mkhsancheti.com/",
     },
     {
-      id: 24,
+      id: 25,
       title: "Cheforeca",
       category: "Hospitality",
       image: "/images/cheforeca.png",
@@ -223,7 +231,7 @@ const Portfolio = () => {
       link: "https://cheforeca.piexxi.in/",
     },
     {
-      id: 25,
+      id: 26,
       title: "Smile Creative",
       category: "Agency",
       image: "/images/smile.png",
@@ -232,22 +240,13 @@ const Portfolio = () => {
       link: "https://smilecreative.agency/",
     },
     {
-      id: 26,
+      id: 27,
       title: "ABO Eye Institute",
       category: "Medical",
       image: "/images/abo.png",
       description:
         "Ophthalmology hospital website featuring doctor profiles, equipment showcases, and appointment booking.",
       link: "https://aboeye.com/",
-    },
-    {
-      id: 27,
-      title: "Ignition Capital",
-      category: "Finance / VC",
-      image: "/images/ignition.png",
-      description:
-        "Venture capital advisory site reflecting strategic authority, thought leadership, and startup ecosystems.",
-      link: "https://ignitioncapitaladvisors.in/",
     },
     {
       id: 28,
@@ -274,7 +273,6 @@ const Portfolio = () => {
       image: "/images/campus.png",
       description:
         "Student networking app with verified onboarding, matching algorithms, and safe chat modules.",
-      
     },
     {
       id: 31,
@@ -283,7 +281,7 @@ const Portfolio = () => {
       image: "/images/onboarding.png",
       description:
         "Automated customer onboarding tool with dynamic pricing, digital signatures, and invoice generation.",
-        link: "https://yanisa-admin.netlify.app/services",
+      link: "https://yanisa-admin.netlify.app/services",
     },
   ];
 
