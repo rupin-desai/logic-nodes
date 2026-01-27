@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import Footer from "../components/Footer";
 
@@ -160,15 +159,6 @@ const Portfolio = () => {
     },
     {
       id: 18,
-      title: "Alkem Events Portal",
-      category: "Enterprise Internal",
-      image: "/images/alkem.png",
-      description:
-        "Internal employee events portal for a pharma giant, delivered in 3 weeks with API integration.",
-      link: "https://demo-eventsmanager.netlify.app/home",
-    },
-    {
-      id: 19,
       title: "Safari Sutra",
       category: "Luxury Travel",
       image: "/images/safarisutra.png",
@@ -177,7 +167,7 @@ const Portfolio = () => {
       link: "https://thesafarisutra.com/",
     },
     {
-      id: 20,
+      id: 19,
       title: "ChaloGoa",
       category: "Travel Marketplace",
       image: "/images/chalogoa.png",
@@ -186,7 +176,7 @@ const Portfolio = () => {
       link: "https://chalogoa.com/",
     },
     {
-      id: 21,
+      id: 20,
       title: "Pass Maldives",
       category: "Luxury Travel",
       image: "/images/passmaldives.png",
@@ -195,7 +185,7 @@ const Portfolio = () => {
       link: "https://passmaldives-next-dev.netlify.app/",
     },
     {
-      id: 22,
+      id: 21,
       title: "Let's Ladakh",
       category: "Niche Travel",
       image: "/images/ladakh.png",
@@ -204,7 +194,7 @@ const Portfolio = () => {
       link: "https://letsladakh.com/",
     },
     {
-      id: 23,
+      id: 22,
       title: "SellItFast",
       category: "Marketplace",
       image: "/images/sellitfast.png",
@@ -213,7 +203,7 @@ const Portfolio = () => {
       link: "https://sellitfast-dev.netlify.app/",
     },
     {
-      id: 24,
+      id: 23,
       title: "MKH Sancheti School",
       category: "Education",
       image: "/images/school.png",
@@ -222,7 +212,7 @@ const Portfolio = () => {
       link: "https://mkhsancheti.com/",
     },
     {
-      id: 25,
+      id: 24,
       title: "Cheforeca",
       category: "Hospitality",
       image: "/images/cheforeca.png",
@@ -231,7 +221,7 @@ const Portfolio = () => {
       link: "https://cheforeca.piexxi.in/",
     },
     {
-      id: 26,
+      id: 25,
       title: "Smile Creative",
       category: "Agency",
       image: "/images/smile.png",
@@ -240,7 +230,7 @@ const Portfolio = () => {
       link: "https://smilecreative.agency/",
     },
     {
-      id: 27,
+      id: 26,
       title: "ABO Eye Institute",
       category: "Medical",
       image: "/images/abo.png",
@@ -249,7 +239,7 @@ const Portfolio = () => {
       link: "https://aboeye.com/",
     },
     {
-      id: 28,
+      id: 27,
       title: "SpectroKAVS",
       category: "Industrial Engineering",
       image: "/images/spectro.png",
@@ -258,7 +248,7 @@ const Portfolio = () => {
       link: "https://spectrokavs.com/",
     },
     {
-      id: 29,
+      id: 28,
       title: "StrongBong",
       category: "E-Commerce",
       image: "/images/strongbong.png",
@@ -267,7 +257,7 @@ const Portfolio = () => {
       link: "https://strongbong.co.in/",
     },
     {
-      id: 30,
+      id: 29,
       title: "Campus Network App",
       category: "Mobile App",
       image: "/images/campus.png",
@@ -275,7 +265,7 @@ const Portfolio = () => {
         "Student networking app with verified onboarding, matching algorithms, and safe chat modules.",
     },
     {
-      id: 31,
+      id: 30,
       title: "Onboarding System",
       category: "SaaS / Automation",
       image: "/images/onboarding.png",
@@ -367,10 +357,10 @@ const Portfolio = () => {
                         className="px-3 py-1 rounded-full text-xs font-semibold border"
                         style={{
                           backgroundColor: `${getColorForCategory(
-                            project.category
+                            project.category,
                           )}20`,
                           borderColor: `${getColorForCategory(
-                            project.category
+                            project.category,
                           )}40`,
                           color: getColorForCategory(project.category),
                         }}
@@ -431,7 +421,7 @@ const Portfolio = () => {
                     className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none"
                     style={{
                       background: `radial-gradient(circle at center, ${getColorForCategory(
-                        project.category
+                        project.category,
                       )}, transparent)`,
                     }}
                   />
