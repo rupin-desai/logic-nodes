@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Portfolio from "./pages/Portfolio";
 import CRM from "./pages/CRM";
+import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/crm" element={<CRM />} />
         </Routes>
+        <ScrollToTop />
       </div>
     </Router>
   );

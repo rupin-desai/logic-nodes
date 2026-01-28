@@ -271,29 +271,6 @@ const Footer = () => {
         </motion.div>
       </div>
 
-      {/* Scroll to Top Button */}
-      <motion.button
-        onClick={scrollToTop}
-        variants={{
-          hidden: {
-            opacity: 0,
-            scale: 0,
-          },
-          visible: {
-            opacity: 1,
-            scale: 1,
-          },
-        }}
-        initial="hidden"
-        animate={controls}
-        whileHover={{ y: -5, scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        transition={{ duration: 0.3 }}
-        className="fixed bottom-8 right-8 z-50 p-4 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-full shadow-lg hover:shadow-xl hover:shadow-[#25B8F2]/50 transition-colors duration-300"
-        aria-label="Scroll to top"
-      >
-        <ArrowUp className="w-6 h-6" />
-      </motion.button>
     </footer>
   );
 };
