@@ -107,7 +107,7 @@ const Navbar = () => {
             <motion.img
               src="/logo_full_white.png"
               alt="Logic Nodes"
-              whileHover={{ transform: "translate3d(0,-2px,0)" }}
+              whileHover={{ y: -2 }}
               className="h-20 cursor-pointer"
             />
           </Link>
@@ -118,8 +118,8 @@ const Navbar = () => {
               <motion.button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                whileHover={{ transform: "translate3d(0,-3px,0)" }}
-                whileTap={{ transform: "translate3d(0,2px,0)" }}
+                whileHover={{ y: -3 }}
+                whileTap={{ y: 2 }}
                 className="text-white hover:text-[#25B8F2] transition-colors duration-300 font-medium cursor-pointer"
               >
                 {link.name}
@@ -127,20 +127,20 @@ const Navbar = () => {
             ))}
 
             <motion.button
-              whileHover={{ transform: "translate3d(0,-3px,0)" }}
-              whileTap={{ transform: "translate3d(0,2px,0)" }}
+              whileHover={{ y: -3 }}
+              whileTap={{ y: 2 }}
               onClick={goToCRM}
-              className="px-6 py-2 bg-white/5 backdrop-blur-sm border-2 border-white/20 text-white rounded-full font-semibold hover:bg-white/10 transition-all duration-300 cursor-pointer"
+              className="px-6 py-2 bg-white/5 backdrop-blur-sm border-2 border-white/20 text-white rounded-full font-semibold hover:bg-white/10 transition-colors duration-300 cursor-pointer"
             >
               CRM
             </motion.button>
 
             {/* Desktop Portfolio button uses same navigate + ensureScroll logic */}
             <motion.button
-              whileHover={{ transform: "translate3d(0,-3px,0)" }}
-              whileTap={{ transform: "translate3d(0,2px,0)" }}
+              whileHover={{ y: -3 }}
+              whileTap={{ y: 2 }}
               onClick={goToPortfolio}
-              className="px-6 py-2 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-full font-semibold hover:shadow-lg hover:shadow-[#25B8F2]/50 transition-all duration-300 cursor-pointer"
+              className="px-6 py-2 bg-linear-to-r from-[#25B8F2] to-[#EF5BB7] text-white rounded-full font-semibold hover:shadow-lg hover:shadow-[#25B8F2]/50 transition-colors duration-300 cursor-pointer"
             >
               Portfolio
             </motion.button>
@@ -149,7 +149,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <div className="md:hidden">
             <motion.button
-              whileTap={{ transform: "translate3d(0,2px,0)" }}
+              whileTap={{ y: 2 }}
               onClick={() => setIsOpen(!isOpen)}
               className="text-white p-2 cursor-pointer"
               aria-expanded={isOpen}
