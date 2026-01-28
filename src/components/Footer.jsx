@@ -47,6 +47,7 @@ const Footer = () => {
     { name: "About Us", id: "about" },
     { name: "Services", id: "services" },
     { name: "Projects", id: "projects" },
+    { name: "Travel CRM", path: "/crm" },
   ];
 
   const services = [
@@ -63,6 +64,7 @@ const Footer = () => {
     { name: "Testimonials", id: "testimonials" },
     { name: "FAQ", id: "faq" },
     { name: "Contact", id: "contact" },
+    { name: "CRM Solution", path: "/crm" },
   ];
 
   const socialLinks = [
@@ -181,13 +183,24 @@ const Footer = () => {
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <motion.button
-                    onClick={() => scrollToSection(link.id)}
-                    whileHover={{ transform: "translate3d(5px,0,0)" }}
-                    className="text-gray-400 hover:text-[#25B8F2] transition-colors duration-300 text-left"
-                  >
-                    {link.name}
-                  </motion.button>
+                  {link.path ? (
+                    <Link to={link.path}>
+                      <motion.button
+                        whileHover={{ transform: "translate3d(5px,0,0)" }}
+                        className="text-gray-400 hover:text-[#25B8F2] transition-colors duration-300 text-left"
+                      >
+                        {link.name}
+                      </motion.button>
+                    </Link>
+                  ) : (
+                    <motion.button
+                      onClick={() => scrollToSection(link.id)}
+                      whileHover={{ transform: "translate3d(5px,0,0)" }}
+                      className="text-gray-400 hover:text-[#25B8F2] transition-colors duration-300 text-left"
+                    >
+                      {link.name}
+                    </motion.button>
+                  )}
                 </li>
               ))}
             </ul>

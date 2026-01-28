@@ -84,16 +84,21 @@ const Navbar = () => {
     { name: "Contact", id: "contact" },
   ];
 
+  const goToCRM = () => {
+    setIsOpen(false);
+    navigate("/crm");
+    window.scrollTo({ top: 0, behavior: "auto" });
+  };
+
   return (
     <motion.nav
       initial={{ transform: "translate3d(0,-100px,0)" }}
       animate={{ transform: "translate3d(0,0,0)" }}
       transition={{ duration: 0.5 }}
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#282B4C]/95 backdrop-blur-sm shadow-lg"
-          : "bg-transparent"
-      }`}
+      className={`fixed w-full z-50 transition-all duration-300 ${scrolled
+        ? "bg-[#282B4C]/95 backdrop-blur-sm shadow-lg"
+        : "bg-transparent"
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
@@ -120,6 +125,15 @@ const Navbar = () => {
                 {link.name}
               </motion.button>
             ))}
+
+            <motion.button
+              whileHover={{ transform: "translate3d(0,-3px,0)" }}
+              whileTap={{ transform: "translate3d(0,2px,0)" }}
+              onClick={goToCRM}
+              className="px-6 py-2 bg-white/5 backdrop-blur-sm border-2 border-white/20 text-white rounded-full font-semibold hover:bg-white/10 transition-all duration-300 cursor-pointer"
+            >
+              CRM
+            </motion.button>
 
             {/* Desktop Portfolio button uses same navigate + ensureScroll logic */}
             <motion.button
@@ -166,6 +180,13 @@ const Navbar = () => {
                   {link.name}
                 </button>
               ))}
+
+              <button
+                onClick={goToCRM}
+                className="w-full px-4 py-3 bg-white/5 border border-white/20 text-white rounded-lg font-semibold cursor-pointer mb-2"
+              >
+                CRM
+              </button>
 
               <button
                 onClick={goToPortfolio}
